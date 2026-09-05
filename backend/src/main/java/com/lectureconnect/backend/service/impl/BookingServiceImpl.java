@@ -61,8 +61,8 @@ public class BookingServiceImpl implements BookingService {
         if (expert == null) {
             throw new ResourceNotFoundException("Expert not found");
         }
-        if (!"VERIFIED".equals(expert.getVerificationStatus())) {
-            throw new BookingStatusException("This expert is not yet verified.");
+        if ("REJECTED".equalsIgnoreCase(expert.getVerificationStatus())) {
+            throw new BookingStatusException("This expert account is currently inactive or rejected.");
         }
 
         // Check for duplicate slot booking
@@ -753,7 +753,10 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookedSlotResponse> getBookedSlotsForExpert(Long expertId) {
-        ExpertProfile profile = expertProfileRepository.findByUserId(expertId).orElse(null);
+        ExpertProfile profile = expertProfileRepository.findById(expertId).orElse(null);
+        if (profile == null) {
+            profile = expertProfileRepository.findByUserId(expertId).orElse(null);
+        }
         Long targetExpertId = profile != null ? profile.getId() : expertId;
 
         List<Booking> activeBookings = bookingRepository.findByExpertIdAndStatusNotIn(targetExpertId, List.of("CANCELLED", "REJECTED"));

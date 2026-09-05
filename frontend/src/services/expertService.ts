@@ -96,43 +96,26 @@ export const expertService = {
         }
       })),
 
-  getById: (userId: number | string) => 
-    api.get(`/experts/${userId}`)
-      .then(r => r.data)
-      .catch(() => ({
-        success: true,
-        data: MOCK_EXPERTS.find(e => e.id === Number(userId)) || MOCK_EXPERTS[0]
-      })),
+  getById: async (userId: number | string) => {
+    try {
+      const res = await api.get(`/experts/${userId}`);
+      return res.data;
+    } catch (err) {
+      const found = MOCK_EXPERTS.find(e => e.id === Number(userId));
+      if (found) {
+        return { success: true, data: found };
+      }
+      throw err;
+    }
+  },
 
   getMyProfile: () =>
     api.get('/expert/profile')
-      .then(r => r.data)
-      .catch(() => ({
-        success: true,
-        data: MOCK_EXPERTS[0]
-      })),
+      .then(r => r.data),
 
   updateProfile: (data: Record<string, any>) =>
     api.put('/expert/profile', data)
-      .then(r => r.data)
-      .catch(() => {
-        if (data.servicePricing) {
-          (MOCK_EXPERTS[0] as any).servicePricing = data.servicePricing;
-        }
-        if (data.sessionFee) {
-          (MOCK_EXPERTS[0] as any).sessionFee = data.sessionFee;
-        }
-        if (data.servicesOffered) {
-          (MOCK_EXPERTS[0] as any).servicesOffered = typeof data.servicesOffered === 'string'
-            ? data.servicesOffered.split(',')
-            : data.servicesOffered;
-        }
-        return {
-          success: true,
-          message: 'Profile updated locally',
-          data
-        };
-      }),
+      .then(r => r.data),
 
   getAvailability: (userId: number | string) => 
     api.get(`/experts/${userId}/availability`)
@@ -162,7 +145,7 @@ export const expertService = {
   getSaved: () => 
     api.get('/saved-experts')
       .then(r => r.data)
-      .catch(() => ({ success: true, data: MOCK_EXPERTS })),
+      .catch(() => ({ success: true, data: [] })),
 
   getBookedSlots: (expertId: number | string) =>
     api.get(`/experts/${expertId}/booked-slots`)

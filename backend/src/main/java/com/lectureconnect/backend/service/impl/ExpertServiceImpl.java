@@ -40,9 +40,9 @@ public class ExpertServiceImpl implements ExpertService {
 
     @Override
     public ExpertDetailResponse getExpertByUserId(Long userId) {
-        ExpertProfile profile = expertProfileRepository.findByUserId(userId).orElse(null);
+        ExpertProfile profile = expertProfileRepository.findById(userId).orElse(null);
         if (profile == null) {
-            profile = expertProfileRepository.findById(userId).orElse(null);
+            profile = expertProfileRepository.findByUserId(userId).orElse(null);
         }
         if (profile == null) {
             throw new ResourceNotFoundException("Expert profile not found");
