@@ -108,13 +108,24 @@ export const CreateRequirementPage: React.FC = () => {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      const payload = {
-        ...data,
+      const payload: any = {
+        title: data.title?.trim(),
+        description: data.description?.trim(),
+        subject: data.subject || 'General',
+        mode: data.mode || 'ONLINE',
+        expertCategory: data.expertCategory || 'GUEST_LECTURE',
         numAttendees: Number(data.numAttendees) || 50,
         durationMinutes: Number(data.durationMinutes) || 60,
         budgetMin: Number(data.budgetMin) || 2000,
         budgetMax: Number(data.budgetMax) || 10000,
       };
+
+      if (selectedSlotData?.date) {
+        payload.preferredDate = selectedSlotData.date;
+      }
+      if (selectedSlotData?.timeSlot) {
+        payload.preferredTime = '10:00:00';
+      }
 
       const res = await requirementService.create(payload);
 
@@ -141,7 +152,13 @@ export const CreateRequirementPage: React.FC = () => {
         }
       }
     } catch (err: any) {
-      toast.error(err.response?.data?.message || 'Failed to create requirement');
+      const errorData = err.response?.data;
+      let errMsg = errorData?.message || 'Failed to create requirement';
+      if (errorData?.data && typeof errorData.data === 'object') {
+        const fieldMsgs = Object.values(errorData.data).join(', ');
+        if (fieldMsgs) errMsg += `: ${fieldMsgs}`;
+      }
+      toast.error(errMsg);
     } finally {
       setLoading(false);
     }
