@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: niveus-backend
+    env: docker
+    dockerfilePath: Dockerfile
+    context: backend
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JWT_SECRET
+        value: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      - key: ALLOWED_ORIGINS
+        value: "http://localhost:5173,https://*.netlify.app,https://*.netlify.com"

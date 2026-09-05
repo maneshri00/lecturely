@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFEBBF" />
+      <stop offset="45%" stop-color="#E5BD67" />
+      <stop offset="100%" stop-color="#B58153" />
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Sharp Golden Chevron Peak / Caret symbol ^ matching uploaded image -->
+  <path d="M 18,76 L 50,20 L 82,76 L 67,76 L 50,45 L 33,76 Z" fill="url(#goldGrad)" filter="url(#goldGlow)" />
+</svg>
