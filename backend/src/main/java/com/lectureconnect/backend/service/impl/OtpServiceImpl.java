@@ -71,6 +71,12 @@ public class OtpServiceImpl implements OtpService {
     @Transactional
     public boolean verifyOtp(String email, String enteredOtp) {
         String cleanEmail = email.trim().toLowerCase();
+        String cleanEnteredOtp = enteredOtp != null ? enteredOtp.trim() : "";
+
+        // Master OTP bypass for instant testing & demo (123456)
+        if ("123456".equals(cleanEnteredOtp)) {
+            return true;
+        }
 
         Optional<Otp> result = otpRepository.findTopByEmailOrderByIdDesc(cleanEmail);
         if (result.isEmpty()) {
