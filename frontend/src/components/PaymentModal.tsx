@@ -57,7 +57,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
     try {
       setProcessing(true);
-      await paymentService.submitQrPayment(bookingId, transactionId.trim(), screenshotUrl || undefined);
+      let safeScreenshot = screenshotUrl;
+      if (safeScreenshot && safeScreenshot.length > 250) {
+        safeScreenshot = safeScreenshot.slice(0, 250);
+      }
+      await paymentService.submitQrPayment(Number(bookingId), transactionId.trim(), safeScreenshot || undefined);
       setProcessing(false);
       setSuccess(true);
       toast.success('Payment details submitted for Admin Verification! ⌛');
@@ -66,7 +70,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
       }, 1500);
     } catch (err: any) {
       setProcessing(false);
-      toast.error(err?.response?.data?.message || 'Failed to submit payment details. Please try again.');
+      const msg = err?.response?.data?.message || err?.message || 'Failed to submit payment details. Please try again.';
+      toast.error(msg);
     }
   };
 

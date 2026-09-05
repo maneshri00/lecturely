@@ -563,7 +563,10 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
 
         if (!booking.getStudentId().equals(studentUserId)) {
-            throw new UnauthorizedException("Only the student who requested this session can submit payment");
+            User user = userRepository.findById(studentUserId).orElse(null);
+            if (user == null || user.getRole() == null || !"ADMIN".equals(user.getRole().name())) {
+                throw new UnauthorizedException("Only the student who requested this session can submit payment");
+            }
         }
 
         Payment payment = paymentRepository.findByBookingId(booking.getId()).orElse(null);
@@ -583,17 +586,26 @@ public class BookingServiceImpl implements BookingService {
         payment.setStatus("VERIFYING");
         payment.setVerificationStatus("PENDING");
         payment.setTransactionId(req.getTransactionId());
-        payment.setScreenshotUrl(req.getScreenshotUrl());
+
+        String ssUrl = req.getScreenshotUrl();
+        if (ssUrl != null && ssUrl.length() > 250) {
+            ssUrl = ssUrl.substring(0, 250);
+        }
+        payment.setScreenshotUrl(ssUrl);
         payment.setPaymentMethod("QR_CODE");
         paymentRepository.save(payment);
 
         booking.setStatus("VERIFYING");
         booking = bookingRepository.save(booking);
 
-        notificationService.createNotification(studentUserId, "PAYMENT_UNDER_VERIFICATION",
-                "Payment Under Verification ⌛",
-                "Your payment proof (UTR: " + req.getTransactionId() + ") was submitted for manual verification. Session link unlocks upon approval.",
-                "/student/bookings/" + booking.getId());
+        try {
+            notificationService.createNotification(booking.getStudentId(), "PAYMENT_UNDER_VERIFICATION",
+                    "Payment Under Verification ⌛",
+                    "Your payment proof (UTR: " + req.getTransactionId() + ") was submitted for manual verification. Session link unlocks upon approval.",
+                    "/student/bookings/" + booking.getId());
+        } catch (Exception e) {
+            log.warn("Failed to create notification for payment verification: {}", e.getMessage());
+        }
 
         return toBookingResponse(booking);
     }
