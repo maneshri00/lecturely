@@ -96,7 +96,6 @@ public class OtpServiceImpl implements OtpService {
         }
 
         // 3. Compare OTP code
-        String cleanEnteredOtp = enteredOtp != null ? enteredOtp.trim() : "";
         if (!savedOtp.getOtp().equals(cleanEnteredOtp)) {
             savedOtp.setAttempts(savedOtp.getAttempts() + 1);
             otpRepository.save(savedOtp);
