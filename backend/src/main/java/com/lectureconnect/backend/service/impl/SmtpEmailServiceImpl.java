@@ -70,7 +70,7 @@ public class SmtpEmailServiceImpl implements EmailService {
             "</div>" +
             "<p style='color:#cbd5e1;font-size:14px;line-height:1.5;'>This code will expire in 5 minutes. Do not share this OTP with anyone.</p>" +
             "<hr style='border:0;border-top:1px solid #0a2540;margin:24px 0;'>" +
-            "<p style='color:#cbd5e1;font-size:14px;line-height:1.5;'>Regards,<br/><strong>Niveus India Security</strong></p>" +
+            "<p style='color:#cbd5e1;font-size:14px;line-height:1.5;'>Regards,<br/><strong>Lecturely India Security</strong></p>" +
             "</div></body></html>",
             otpCode
         );
