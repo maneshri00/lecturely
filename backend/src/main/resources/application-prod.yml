@@ -26,10 +26,7 @@ spring:
         format_sql: false
 
   flyway:
-    enabled: true
-    baseline-on-migrate: true
-    validate-on-migrate: false
-    out-of-order: true
+    enabled: false
 
 server:
   port: ${PORT:8080}
