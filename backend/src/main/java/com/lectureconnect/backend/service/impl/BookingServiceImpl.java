@@ -645,13 +645,14 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional
-    public BookingResponse verifyQrPayment(Long paymentId, boolean approve, String rejectionReason) {
-        Payment payment = paymentRepository.findById(paymentId)
-                .orElseGet(() -> paymentRepository.findByBookingId(paymentId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Payment verification record not found")));
+    public BookingResponse verifyQrPayment(Long id, boolean approve, String rejectionReason) {
+        Payment payment = paymentRepository.findByBookingId(id)
+                .orElseGet(() -> paymentRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Payment verification record not found for ID: " + id)));
 
         Booking booking = bookingRepository.findById(payment.getBookingId())
-                .orElseThrow(() -> new ResourceNotFoundException("Associated booking not found"));
+                .orElseGet(() -> bookingRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Associated booking not found for ID: " + id)));
 
         if (approve) {
             payment.setStatus("COMPLETED");

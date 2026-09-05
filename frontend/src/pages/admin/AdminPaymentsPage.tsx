@@ -30,8 +30,8 @@ export const AdminPaymentsPage: React.FC = () => {
       queryClient.invalidateQueries({ queryKey: ['admin-pending-verifications'] });
       queryClient.invalidateQueries({ queryKey: ['admin-payments'] });
     },
-    onError: () => {
-      toast.error('Failed to verify payment.');
+    onError: (err: any) => {
+      toast.error(err.response?.data?.message || 'Failed to verify payment.');
     },
   });
 
@@ -45,8 +45,8 @@ export const AdminPaymentsPage: React.FC = () => {
       queryClient.invalidateQueries({ queryKey: ['admin-pending-verifications'] });
       queryClient.invalidateQueries({ queryKey: ['admin-payments'] });
     },
-    onError: () => {
-      toast.error('Failed to reject payment.');
+    onError: (err: any) => {
+      toast.error(err.response?.data?.message || 'Failed to reject payment.');
     },
   });
 
@@ -182,7 +182,7 @@ export const AdminPaymentsPage: React.FC = () => {
                   {/* Approve / Reject Action Buttons */}
                   <div className="flex gap-2 pt-2 border-t border-[#0a2540]">
                     <button
-                      onClick={() => verifyMutation.mutate(item.paymentId || item.bookingId)}
+                      onClick={() => verifyMutation.mutate(item.bookingId || item.paymentId)}
                       disabled={verifyMutation.isPending}
                       className="btn-primary flex-1 py-2.5 px-3 text-xs font-black uppercase tracking-wider shadow-ns-gold flex items-center justify-center gap-1.5"
                     >
@@ -190,7 +190,7 @@ export const AdminPaymentsPage: React.FC = () => {
                     </button>
 
                     <button
-                      onClick={() => setRejectionModalId(item.paymentId || item.bookingId)}
+                      onClick={() => setRejectionModalId(item.bookingId || item.paymentId)}
                       className="btn-secondary text-xs px-4 py-2.5 text-rose-400 border-rose-500/40 font-bold uppercase flex items-center justify-center gap-1.5"
                     >
                       <ThumbsDown className="w-4 h-4" /> Reject
