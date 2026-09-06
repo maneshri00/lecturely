@@ -25,9 +25,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
   }
 
   const userRoleLower = (user.role || 'STUDENT').toLowerCase();
-  if (role !== userRoleLower) {
-    toast.error(`Access denied to ${role} section. Redirecting to your ${userRoleLower} dashboard.`);
-    return <Navigate to={`/${userRoleLower}/dashboard`} replace />;
+  if (role !== userRoleLower && userRoleLower !== 'admin') {
+    if (userRoleLower === 'expert' && role === 'student') {
+      // Allow experts to view student section features (e.g. booking, requirements, quiz) cleanly
+    } else {
+      toast.error(`Access denied to ${role} section. Redirecting to your ${userRoleLower} dashboard.`);
+      return <Navigate to={`/${userRoleLower}/dashboard`} replace />;
+    }
   }
 
   const handleSignOut = () => {

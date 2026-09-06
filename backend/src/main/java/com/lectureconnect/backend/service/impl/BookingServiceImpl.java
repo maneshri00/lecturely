@@ -564,7 +564,7 @@ public class BookingServiceImpl implements BookingService {
 
         if (!booking.getStudentId().equals(studentUserId)) {
             User user = userRepository.findById(studentUserId).orElse(null);
-            if (user == null || user.getRole() == null || !"ADMIN".equals(user.getRole().name())) {
+            if (user == null || user.getRole() == null || !"ADMIN".equalsIgnoreCase(user.getRole())) {
                 throw new UnauthorizedException("Only the student who requested this session can submit payment");
             }
         }
