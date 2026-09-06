@@ -12,7 +12,7 @@ public class MockVideoConferenceService implements VideoConferenceService {
 
     @Override
     public String generateMeetingLink(Long bookingId) {
-        return "https://meet.jit.si/niveus-guest-session-" + (bookingId != null ? bookingId : System.currentTimeMillis());
+        return "https://meet.jit.si/lecturely-guest-session-" + (bookingId != null ? bookingId : System.currentTimeMillis());
     }
 
     private String randomLetters(int count) {

@@ -57,7 +57,7 @@ public class SmtpEmailServiceImpl implements EmailService {
             "👉  %s  👈\n\n" +
             "This code will expire in 5 minutes. Do not share this OTP with anyone.\n\n" +
             "Regards,\n" +
-            "Niveus India Security",
+            "Lecturely India Security",
             otpCode
         );
 
@@ -79,7 +79,7 @@ public class SmtpEmailServiceImpl implements EmailService {
 
     @Override
     public void sendWelcomeEmail(String toEmail, String name, String role) {
-        String subject = "Welcome to Niveus India! 🎓";
+        String subject = "Welcome to Lecturely India! 🎓";
         String html = String.format("<p>Welcome %s! You registered as a %s.</p>", name, role);
         sendRealEmail(toEmail, subject, html);
     }
@@ -106,7 +106,7 @@ public class SmtpEmailServiceImpl implements EmailService {
             "<div style='max-width:550px;margin:0 auto;background:#010101;padding:30px;border-radius:16px;border:1px solid #0a2540;'>" +
             "<div style='text-align:center;margin-bottom:20px;'>" +
             "<h2 style='color:#ffebbf;margin:0;font-size:22px;'>📹 Google Meet Session Confirmed</h2>" +
-            "<p style='color:#94a3b8;font-size:13px;'>Niveus Online Session & Keynote Conference Room</p>" +
+            "<p style='color:#94a3b8;font-size:13px;'>Lecturely Online Session & Keynote Conference Room</p>" +
             "</div>" +
             "<p style='color:#e2e8f0;font-size:15px;line-height:1.5;'>Dear <strong>%s</strong>,</p>" +
             "<p style='color:#cbd5e1;font-size:14px;line-height:1.5;'>Your online session <strong>%s</strong> is confirmed. Your official Google Meet video conference link is ready below:</p>" +
@@ -114,9 +114,9 @@ public class SmtpEmailServiceImpl implements EmailService {
             "<a href='%s' target='_blank' style='background-color:#00796b;color:#ffffff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:900;font-size:15px;display:inline-block;box-shadow:0 4px 12px rgba(0,0,0,0.3);'>📹 Join Google Meet Session</a>" +
             "<p style='color:#94a3b8;font-size:12px;margin-top:14px;word-break:break-all;'>Direct Room Link: <a href='%s' style='color:#38bdf8;'>%s</a></p>" +
             "</div>" +
-            "<p style='color:#94a3b8;font-size:13px;line-height:1.5;'>Please ensure you join at your scheduled session time. You can also access this link anytime from your Niveus Dashboard.</p>" +
+            "<p style='color:#94a3b8;font-size:13px;line-height:1.5;'>Please ensure you join at your scheduled session time. You can also access this link anytime from your Lecturely Dashboard.</p>" +
             "<hr style='border:0;border-top:1px solid #0a2540;margin:24px 0;'>" +
-            "<p style='color:#cbd5e1;font-size:13px;line-height:1.5;'>Best regards,<br/><strong>Niveus Platform Team</strong></p>" +
+            "<p style='color:#cbd5e1;font-size:13px;line-height:1.5;'>Best regards,<br/><strong>Lecturely Platform Team</strong></p>" +
             "</div></body></html>",
             recipientName, sessionTitle, meetingLink, meetingLink, meetingLink
         );
@@ -156,7 +156,7 @@ public class SmtpEmailServiceImpl implements EmailService {
         String formattedTime = scheduledAt != null ? scheduledAt.format(FORMATTER) : "Scheduled Time";
         int duration = durationMinutes != null ? durationMinutes : 60;
         String liveMeetUrl = (meetingLink != null && !meetingLink.isBlank()) ? meetingLink : "https://meet.google.com/new";
-        String calUrl = buildGoogleCalendarUrl(sessionTitle, "Niveus Session between Student & Expert", scheduledAt, durationMinutes, liveMeetUrl);
+        String calUrl = buildGoogleCalendarUrl(sessionTitle, "Lecturely Session between Student & Expert", scheduledAt, durationMinutes, liveMeetUrl);
 
         String subject = "📹 Scheduled Google Meet Link: " + sessionTitle + " (" + formattedTime + ")";
         String html = String.format(
@@ -164,7 +164,7 @@ public class SmtpEmailServiceImpl implements EmailService {
             "<div style='max-width:580px;margin:0 auto;background:#010101;padding:30px;border-radius:16px;border:1px solid #0a2540;'>" +
             "<div style='text-align:center;margin-bottom:20px;'>" +
             "<h2 style='color:#ffebbf;margin:0;font-size:22px;'>📹 Google Meet Session Scheduled</h2>" +
-            "<p style='color:#94a3b8;font-size:13px;'>Niveus Online Session & Keynote Conference Room</p>" +
+            "<p style='color:#94a3b8;font-size:13px;'>Lecturely Online Session & Keynote Conference Room</p>" +
             "</div>" +
             "<p style='color:#e2e8f0;font-size:15px;line-height:1.5;'>Dear <strong>%s</strong>,</p>" +
             "<p style='color:#cbd5e1;font-size:14px;line-height:1.5;'>The slot for <strong>%s</strong> has been accepted and confirmed for <strong>%s</strong> (%d mins duration).</p>" +
@@ -178,7 +178,7 @@ public class SmtpEmailServiceImpl implements EmailService {
             "</div>" +
             "<p style='color:#94a3b8;font-size:13px;line-height:1.5;'>Click <strong>Add to Google Calendar</strong> to sync this meeting directly with your Google Calendar, or click <strong>Join Live Google Meet</strong> to start/join the room instantly.</p>" +
             "<hr style='border:0;border-top:1px solid #0a2540;margin:24px 0;'>" +
-            "<p style='color:#cbd5e1;font-size:13px;line-height:1.5;'>Best regards,<br/><strong>Niveus Platform Team</strong></p>" +
+            "<p style='color:#cbd5e1;font-size:13px;line-height:1.5;'>Best regards,<br/><strong>Lecturely Platform Team</strong></p>" +
             "</div></body></html>",
             recipientName, sessionTitle, formattedTime, duration, formattedTime, liveMeetUrl, calUrl, liveMeetUrl, liveMeetUrl
         );

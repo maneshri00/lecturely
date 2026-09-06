@@ -3,39 +3,39 @@ version: '3.9'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: niveus-postgres-prod
+    container_name: lecturely-postgres-prod
     restart: always
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-niveusdb}
-      POSTGRES_USER: ${POSTGRES_USER:-niveususer}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-NiveusSecurePass2026!}
+      POSTGRES_DB: ${POSTGRES_DB:-lecturelydb}
+      POSTGRES_USER: ${POSTGRES_USER:-lecturelyuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-LecturelySecurePass2026!}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-niveususer} -d ${POSTGRES_DB:-niveusdb}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lecturelyuser} -d ${POSTGRES_DB:-lecturelydb}"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - niveus-network
+      - lecturely-network
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: niveus-backend-prod
+    container_name: lecturely-backend-prod
     restart: always
     depends_on:
       postgres:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-niveusdb}
-      DATABASE_USERNAME: ${POSTGRES_USER:-niveususer}
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-NiveusSecurePass2026!}
-      JWT_SECRET: ${JWT_SECRET:-niveus-india-super-secret-jwt-key-minimum-256-bits-for-hs256-production}
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-lecturelydb}
+      DATABASE_USERNAME: ${POSTGRES_USER:-lecturelyuser}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-LecturelySecurePass2026!}
+      JWT_SECRET: ${JWT_SECRET:-lecturely-india-super-secret-jwt-key-minimum-256-bits-for-hs256-production}
       SPRING_MAIL_HOST: ${SMTP_HOST:-smtp.gmail.com}
       SPRING_MAIL_PORT: ${SMTP_PORT:-587}
       SPRING_MAIL_USERNAME: ${SMTP_USERNAME:-}
@@ -50,13 +50,13 @@ services:
       retries: 3
       start_period: 45s
     networks:
-      - niveus-network
+      - lecturely-network
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: niveus-frontend-prod
+    container_name: lecturely-frontend-prod
     restart: always
     depends_on:
       - backend
@@ -64,13 +64,13 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - niveus-network
+      - lecturely-network
 
 volumes:
   postgres_data:
     driver: local
 
 networks:
-  niveus-network:
-    name: niveus-production-network
+  lecturely-network:
+    name: lecturely-production-network
     driver: bridge

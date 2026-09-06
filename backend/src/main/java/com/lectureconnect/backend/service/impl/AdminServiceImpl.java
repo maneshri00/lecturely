@@ -233,7 +233,7 @@ public class AdminServiceImpl implements AdminService {
 
         String newPassword = (customPassword != null && !customPassword.isBlank())
                 ? customPassword
-                : "NiveusSec#" + (int)(Math.random() * 900000 + 100000);
+                : "LecturelySec#" + (int)(Math.random() * 900000 + 100000);
 
         user.setPasswordHash(passwordEncoder.encode(newPassword));
         userRepository.save(user);
