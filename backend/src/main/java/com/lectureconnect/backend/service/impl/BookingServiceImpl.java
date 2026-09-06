@@ -64,6 +64,9 @@ public class BookingServiceImpl implements BookingService {
         if ("REJECTED".equalsIgnoreCase(expert.getVerificationStatus())) {
             throw new BookingStatusException("This expert account is currently inactive or rejected.");
         }
+        if (expert.getUserId() != null && expert.getUserId().equals(studentUserId)) {
+            throw new BookingStatusException("You cannot book a session with yourself.");
+        }
 
         // Check for duplicate slot booking
         if (req.getScheduledAt() != null) {

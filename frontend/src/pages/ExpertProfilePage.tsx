@@ -46,14 +46,18 @@ export const ExpertProfilePage: React.FC = () => {
 
   const handleBookSession = () => {
     if (!user) {
-      toast.error('Please sign in as a student to book sessions');
+      toast.error('Please sign in to book sessions');
       navigate('/login');
       return;
     }
-    if (user.role !== 'STUDENT') {
-      toast.error('Only students or institution admins can book sessions');
+
+    // Prevent expert from booking themselves
+    const isSelfBooking = user.role === 'EXPERT' && (expert?.userId === user.id || expert?.id === user.id);
+    if (isSelfBooking) {
+      toast.error('You cannot book a session with yourself.');
       return;
     }
+
     setIsCalendarOpen(true);
   };
 
