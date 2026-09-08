@@ -124,36 +124,63 @@ export function LandingPage() {
               </div>
             </div>
 
-            {/* Right Ecosystem Illustration Visual Side */}
+            {/* Right Side: Authentic Real-World Photo & Platform UI Card Hybrid */}
             <div className="lg:col-span-5 relative flex justify-center items-center">
               <div className="relative group w-full max-w-lg">
                 {/* Glow ring */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#ffebbf]/30 to-[#b58153]/30 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 
-                {/* Visual Container */}
-                <div className="relative glass-card-premium p-3 border border-[#b58153]/40 rounded-3xl overflow-hidden shadow-2xl bg-[#090e18]">
-                  <img 
-                    src="/assets/hero_ecosystem.png" 
-                    alt="Lecturely Expert to Student Ecosystem" 
-                    className="w-full h-auto rounded-2xl object-cover transform transition-transform duration-500 group-hover:scale-105"
-                  />
+                {/* Real Hero Photo Container */}
+                <div className="relative glass-card-premium p-2 border border-[#b58153]/40 rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] bg-[#090e18]">
+                  {/* High-res authentic lecture/mentorship photography */}
+                  <div className="relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1200" 
+                      alt="Real Guest Lecture & Mentorship Session" 
+                      className="w-full h-full object-cover brightness-90 group-hover:scale-105 transition-transform duration-700"
+                    />
+                    {/* Gradient overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#090e18] via-[#090e18]/30 to-transparent"></div>
+                  </div>
 
-                  {/* Floating Overlay Badge 1 */}
-                  <div className="absolute top-6 left-6 bg-[#090e18]/90 backdrop-blur-md border border-[#b58153]/50 px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 animate-bounce-slow">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#ffebbf] to-[#b58153] flex items-center justify-center text-[#010101] font-black text-xs">
-                      🎓
-                    </div>
-                    <div>
-                      <span className="text-[10px] text-slate-400 uppercase font-bold block">Live Ecosystem</span>
-                      <span className="text-xs font-black text-[#ffebbf]">Expert ↔ Student</span>
+                  {/* Real Floating UI Card 1: Top Speaker Profile */}
+                  <div className="absolute top-5 left-5 right-5 bg-[#090e18]/95 backdrop-blur-xl border border-[#b58153]/50 p-3.5 rounded-2xl shadow-2xl animate-bounce-slow">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" 
+                        alt="Dr. Ramesh Kumar" 
+                        className="w-11 h-11 rounded-full object-cover border-2 border-[#ffebbf] shadow-md shrink-0"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-extrabold text-white text-xs truncate">Dr. Ramesh Kumar</span>
+                          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        </div>
+                        <span className="text-[10px] text-slate-300 block truncate">Professor & AI Researcher • IIT Bombay</span>
+                      </div>
+                      <div className="bg-[#0a2540] border border-[#b58153]/40 px-2.5 py-1 rounded-full text-[10px] font-black text-[#ffebbf] shrink-0">
+                        ★ 4.9
+                      </div>
                     </div>
                   </div>
 
-                  {/* Floating Overlay Badge 2 */}
-                  <div className="absolute bottom-6 right-6 bg-[#090e18]/90 backdrop-blur-md border border-emerald-500/50 px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
-                    <span className="text-xs font-bold text-emerald-300">100% Verified Mentors</span>
+                  {/* Real Floating UI Card 2: Bottom Live Booking Badge */}
+                  <div className="absolute bottom-5 left-5 right-5 bg-[#090e18]/95 backdrop-blur-xl border border-emerald-500/40 p-3.5 rounded-2xl shadow-2xl flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
+                      <div>
+                        <span className="text-[10px] text-slate-400 uppercase font-bold block">Live Escrow Booking</span>
+                        <span className="text-xs font-black text-white">Direct 1-on-1 & Keynotes</span>
+                      </div>
+                    </div>
+                    <Link 
+                      to="/experts" 
+                      className="bg-gradient-to-r from-[#ffebbf] to-[#b58153] text-[#010101] font-black text-[11px] px-3.5 py-2 rounded-xl uppercase shadow-ns-gold hover:scale-105 transition-transform"
+                    >
+                      Book Now
+                    </Link>
                   </div>
+
                 </div>
               </div>
             </div>
