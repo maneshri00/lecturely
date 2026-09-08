@@ -63,10 +63,16 @@ export function LandingPage() {
       {/* Hero Section */}
       <div className="relative pt-24 pb-24 lg:pt-36 lg:pb-32 overflow-hidden">
         
+        {/* Educational Network Background Image Layer */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 pointer-events-none z-0 mix-blend-screen"
+          style={{ backgroundImage: `url('/assets/education_hero_bg.png')` }}
+        ></div>
+
         {/* Ambient Glow Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#0a2540]/50 via-[#0a2540]/20 to-transparent rounded-full blur-[140px] pointer-events-none z-0"></div>
-        <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-[#b58153]/15 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
-        <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-[#ffebbf]/10 rounded-full blur-[130px] pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#0a2540]/60 via-[#0a2540]/30 to-transparent rounded-full blur-[140px] pointer-events-none z-0"></div>
+        <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-[#b58153]/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-[#ffebbf]/15 rounded-full blur-[130px] pointer-events-none animate-pulse-slow"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -133,21 +139,21 @@ export function LandingPage() {
                 {/* Real Hero Photo Container */}
                 <div className="relative glass-card-premium p-2 border border-[#b58153]/40 rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] bg-[#090e18]">
                   {/* High-res authentic lecture/mentorship photography */}
-                  <div className="relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden">
+                  <div className="relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden bg-[#010101]">
                     <img 
-                      src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1200" 
-                      alt="Real Guest Lecture & Mentorship Session" 
-                      className="w-full h-full object-cover brightness-90 group-hover:scale-105 transition-transform duration-700"
+                      src="/assets/hero_speaker.png" 
+                      alt="Real Guest Lecture & Mentorship Session at IIT Bombay" 
+                      className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-700"
                     />
                     {/* Gradient overlay for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#090e18] via-[#090e18]/30 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#090e18] via-[#090e18]/20 to-transparent"></div>
                   </div>
 
                   {/* Real Floating UI Card 1: Top Speaker Profile */}
                   <div className="absolute top-5 left-5 right-5 bg-[#090e18]/95 backdrop-blur-xl border border-[#b58153]/50 p-3.5 rounded-2xl shadow-2xl animate-bounce-slow">
                     <div className="flex items-center gap-3">
                       <img 
-                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" 
+                        src="/assets/professor_avatar.png" 
                         alt="Dr. Ramesh Kumar" 
                         className="w-11 h-11 rounded-full object-cover border-2 border-[#ffebbf] shadow-md shrink-0"
                       />
@@ -323,6 +329,10 @@ export function LandingPage() {
 
       {/* CTA Section */}
       <div className="bg-[#090e18] text-white py-24 relative overflow-hidden border-t border-[#0a2540]">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none z-0 mix-blend-screen"
+          style={{ backgroundImage: `url('/assets/education_hero_bg.png')` }}
+        ></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#0a2540]/60 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
