@@ -27,7 +27,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
   const userRoleLower = (user.role || 'STUDENT').toLowerCase();
   if (role !== userRoleLower && userRoleLower !== 'admin') {
     if (userRoleLower === 'expert' && role === 'student') {
-      // Allow experts to view student section features (e.g. booking, requirements, quiz) cleanly
+      // Allow experts to view student section features (e.g. booking, requirements) cleanly
     } else {
       toast.error(`Access denied to ${role} section. Redirecting to your ${userRoleLower} dashboard.`);
       return <Navigate to={`/${userRoleLower}/dashboard`} replace />;
@@ -43,7 +43,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ role }) => {
   const navItems = {
     student: [
       { path: '/student/dashboard', label: 'Dashboard', icon: Home },
-      { path: '/student/quiz', label: 'AI Quiz Bot', icon: TrendingUp },
       { path: '/student/experts', label: 'Find Experts', icon: Users },
       { path: '/student/requirements', label: 'My Requirements', icon: BookOpen },
       { path: '/student/bookings', label: 'Bookings', icon: Calendar },

@@ -47,12 +47,6 @@ export const StudentDashboardPage: React.FC = () => {
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            to="/student/quiz"
-            className="px-5 py-3 bg-gradient-to-r from-teal-500 to-emerald-600 text-white text-xs font-black uppercase tracking-wider rounded-xl shadow-lg hover:brightness-110 transition flex items-center gap-2"
-          >
-            🧠 AI Quiz & Diagnostics Bot
-          </Link>
-          <Link
             to="/student/requirements/create"
             className="btn-primary text-xs px-5 py-3 shadow-ns-gold flex items-center gap-2 uppercase font-black"
           >

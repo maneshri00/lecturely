@@ -29,7 +29,6 @@ import { PoliciesPage } from '../pages/PoliciesPage';
 
 // Student Pages
 import { StudentDashboardPage } from '../pages/student/StudentDashboardPage';
-import { StudentQuizBotPage } from '../pages/student/StudentQuizBotPage';
 import { StudentBookingsPage } from '../pages/student/StudentBookingsPage';
 import { BookingDetailPage } from '../pages/student/BookingDetailPage';
 import { StudentRequirementsPage } from '../pages/student/StudentRequirementsPage';
@@ -82,7 +81,6 @@ export const AppRoutes: React.FC = () => {
         {/* Student Dashboard Routes */}
         <Route path="/student" element={<DashboardLayout role="student" />}>
           <Route path="dashboard" element={<StudentDashboardPage />} />
-          <Route path="quiz" element={<StudentQuizBotPage />} />
           <Route path="experts" element={<ExpertsPage />} />
           <Route path="requirements" element={<StudentRequirementsPage />} />
           <Route path="requirements/create" element={<CreateRequirementPage />} />
