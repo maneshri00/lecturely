@@ -235,16 +235,24 @@ export function LandingPage() {
       </div>
 
       {/* Services Offerings Section */}
-      <div className="py-20 bg-[#090e18] border-y border-[#0a2540] relative">
+      <div className={`py-20 border-y relative transition-colors duration-300 ${
+        isDark ? 'bg-[#090e18] border-[#0a2540]' : 'bg-white border-amber-100'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-block px-3.5 py-1 bg-[#0a2540] border border-[#b58153]/40 text-[#ffebbf] text-xs font-bold uppercase tracking-widest rounded-full mb-3">
+            <div className={`inline-block px-3.5 py-1 border text-xs font-bold uppercase tracking-widest rounded-full mb-3 ${
+              isDark
+                ? 'bg-[#0a2540] border-[#b58153]/40 text-[#ffebbf]'
+                : 'bg-amber-50 border-amber-300 text-amber-700'
+            }`}>
               Complete Educational Ecosystem
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-display text-white mb-4">
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold font-display mb-4 ${
+              isDark ? 'text-white' : 'text-[#0f172a]'
+            }`}>
               Tailored Offerings For <span className="text-gold-shiny">Every Learner</span>
             </h2>
-            <p className="text-slate-400 text-base max-w-2xl mx-auto font-normal">
+            <p className={`text-base max-w-2xl mx-auto font-normal ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
               Whether you are an institution booking keynotes, or a student seeking personal tutoring and career mentorship.
             </p>
           </div>
@@ -253,56 +261,86 @@ export function LandingPage() {
             {serviceOfferings.map((srv, idx) => (
               <div
                 key={idx}
-                className={`glass-card p-6 border ${srv.accent} bg-[#010101] hover:bg-[#090e18] transition-all duration-300 flex flex-col justify-between group shadow-xl hover:-translate-y-1`}
+                className={`p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between group shadow-lg hover:-translate-y-1 ${
+                  isDark
+                    ? `glass-card border-[#0a2540] bg-[#010101] hover:bg-[#090e18]`
+                    : `bg-white border-slate-200 hover:border-amber-300 hover:shadow-amber-100/60`
+                }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 bg-[#0a2540] rounded-xl border border-[#b58153]/30 group-hover:scale-110 transition-transform">
+                    <div className={`p-3 rounded-xl border group-hover:scale-110 transition-transform ${
+                      isDark
+                        ? 'bg-[#0a2540] border-[#b58153]/30'
+                        : 'bg-amber-50 border-amber-200'
+                    }`}>
                       {srv.icon}
                     </div>
-                    <span className="text-xs font-black text-[#ffebbf] uppercase tracking-wider bg-[#0a2540] px-2.5 py-1 rounded-md">
+                    <span className={`text-xs font-black uppercase tracking-wider px-2.5 py-1 rounded-md ${
+                      isDark
+                        ? 'text-[#ffebbf] bg-[#0a2540]'
+                        : 'text-amber-700 bg-amber-50 border border-amber-200'
+                    }`}>
                       Verified
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold font-display text-white group-hover:text-[#ffebbf] transition-colors mb-2">
+                  <h3 className={`text-xl font-bold font-display mb-2 transition-colors ${
+                    isDark
+                      ? 'text-white group-hover:text-[#ffebbf]'
+                      : 'text-[#0f172a] group-hover:text-amber-700'
+                  }`}>
                     {srv.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                     {srv.desc}
                   </p>
                 </div>
 
                 <Link
                   to={`/experts?service=${srv.filter}`}
-                  className="btn-secondary w-full py-2.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 group-hover:bg-[#0a2540] group-hover:text-[#ffebbf]"
+                  className={`w-full py-2.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 rounded-xl border transition-all duration-200 ${
+                    isDark
+                      ? 'btn-secondary group-hover:bg-[#0a2540] group-hover:text-[#ffebbf]'
+                      : 'bg-white text-slate-700 border-slate-200 hover:bg-amber-50 hover:border-amber-400 hover:text-amber-800'
+                  }`}
                 >
                   Explore Experts <ArrowRight size={14} />
                 </Link>
               </div>
             ))}
 
-            {/* Trust Guarantee Card */}
-            <div className="glass-card-premium p-6 border border-[#b58153]/50 bg-gradient-to-br from-[#0a2540] to-[#090e18] flex flex-col justify-between">
+            {/* Trust Guarantee Card — premium gold in light mode, navy in dark mode */}
+            <div className={`p-6 rounded-2xl border flex flex-col justify-between shadow-xl ${
+              isDark
+                ? 'glass-card-premium border-[#b58153]/50 bg-gradient-to-br from-[#0a2540] to-[#090e18]'
+                : 'bg-gradient-to-br from-amber-500 to-orange-600 border-amber-400 text-white'
+            }`}>
               <div>
-                <div className="p-3 bg-[#ffebbf] text-[#010101] rounded-xl font-bold w-fit mb-4">
+                <div className={`p-3 rounded-xl font-bold w-fit mb-4 ${
+                  isDark ? 'bg-[#ffebbf] text-[#010101]' : 'bg-white/20 text-white backdrop-blur-sm'
+                }`}>
                   <ShieldCheck size={28} />
                 </div>
-                <h3 className="text-xl font-bold font-display text-[#ffebbf] mb-2">
+                <h3 className={`text-xl font-bold font-display mb-2 ${isDark ? 'text-[#ffebbf]' : 'text-white'}`}>
                   LinkedIn & Escrow Protected
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                <p className={`text-sm leading-relaxed mb-4 ${isDark ? 'text-slate-300' : 'text-white/90'}`}>
                   Every mentor and personal tutor is verified via institutional ID and LinkedIn. Payments are protected in Escrow until completion.
                 </p>
-                <ul className="space-y-1.5 text-xs text-slate-300">
-                  <li className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-emerald-400" /> Direct 1-on-1 Video Link</li>
-                  <li className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-emerald-400" /> Instant Counter-Offer Option</li>
-                  <li className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-emerald-400" /> Flexible Hourly & Session Rates</li>
+                <ul className={`space-y-1.5 text-xs ${isDark ? 'text-slate-300' : 'text-white/90'}`}>
+                  <li className="flex items-center gap-1.5"><CheckCircle2 size={14} className={isDark ? 'text-emerald-400' : 'text-white'} /> Direct 1-on-1 Video Link</li>
+                  <li className="flex items-center gap-1.5"><CheckCircle2 size={14} className={isDark ? 'text-emerald-400' : 'text-white'} /> Instant Counter-Offer Option</li>
+                  <li className="flex items-center gap-1.5"><CheckCircle2 size={14} className={isDark ? 'text-emerald-400' : 'text-white'} /> Flexible Hourly & Session Rates</li>
                 </ul>
               </div>
               <Link to="/register" className="mt-6">
-                <Button variant="primary" className="w-full text-xs py-2.5 font-bold uppercase">
+                <button className={`w-full text-xs py-2.5 font-bold uppercase rounded-xl transition-all duration-200 ${
+                  isDark
+                    ? 'btn-primary'
+                    : 'bg-white text-amber-700 hover:bg-amber-50 font-black shadow-lg hover:shadow-white/30'
+                }`}>
                   Become a Mentor / Tutor
-                </Button>
+                </button>
               </Link>
             </div>
           </div>
@@ -310,58 +348,43 @@ export function LandingPage() {
       </div>
 
       {/* Real-Time Platform Stats Bar */}
-      <div className="bg-[#090e18] py-16 border-b border-[#0a2540] relative">
+      <div className={`py-16 border-b relative transition-colors duration-300 ${
+        isDark ? 'bg-[#090e18] border-[#0a2540]' : 'bg-amber-50/60 border-amber-100'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            
-            <div className="glass-card-premium p-6 text-center group border border-[#b58153]/30 hover:border-[#ffebbf] transition-all">
-              <div className="w-12 h-12 rounded-2xl bg-[#0a2540] border border-[#b58153]/40 flex items-center justify-center text-[#ffebbf] mx-auto mb-4 group-hover:scale-110 transition-transform shadow-md">
-                <Users size={24} />
+            {[
+              { icon: <Users size={24} />, value: (stats?.totalStudents ?? 0).toLocaleString(), label: 'Active Registered Students', gold: true },
+              { icon: <ShieldCheck size={24} />, value: (stats?.totalVerifiedExperts ?? 0).toLocaleString(), label: 'Mentors & Tutors in System', gold: false },
+              { icon: <Award size={24} />, value: (stats?.totalInstitutions ?? 0).toLocaleString(), label: 'Partner Colleges & Institutions', gold: true },
+              { icon: <Star size={24} />, value: stats?.averageRating ? `${stats.averageRating.toFixed(1)} / 5` : '5.0 / 5', label: 'Live Average Rating', gold: false },
+            ].map((stat, i) => (
+              <div key={i} className={`p-6 text-center rounded-2xl group border transition-all hover:-translate-y-0.5 ${
+                isDark
+                  ? 'glass-card-premium border-[#b58153]/30 hover:border-[#ffebbf]'
+                  : 'bg-white border-slate-200 hover:border-amber-300 shadow-sm hover:shadow-amber-100'
+              }`}>
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-md border ${
+                  isDark
+                    ? 'bg-[#0a2540] border-[#b58153]/40 text-[#ffebbf]'
+                    : 'bg-amber-50 border-amber-200 text-amber-600'
+                }`}>
+                  {stat.icon}
+                </div>
+                <div className={`text-3xl sm:text-4xl font-black font-display mb-1 ${
+                  isDark
+                    ? stat.gold ? 'text-gold-shiny' : 'text-[#ffebbf]'
+                    : 'text-amber-700'
+                }`}>
+                  {stat.value}
+                </div>
+                <div className={`text-[11px] sm:text-xs font-bold uppercase tracking-wider ${
+                  isDark ? 'text-slate-400' : 'text-slate-500'
+                }`}>
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-3xl sm:text-4xl font-black font-display text-gold-shiny mb-1">
-                {(stats?.totalStudents ?? 0).toLocaleString()}
-              </div>
-              <div className="text-slate-400 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
-                Active Registered Students
-              </div>
-            </div>
-
-            <div className="glass-card-premium p-6 text-center group border border-[#b58153]/30 hover:border-[#ffebbf] transition-all">
-              <div className="w-12 h-12 rounded-2xl bg-[#0a2540] border border-[#b58153]/40 flex items-center justify-center text-[#ffebbf] mx-auto mb-4 group-hover:scale-110 transition-transform shadow-md">
-                <ShieldCheck size={24} />
-              </div>
-              <div className="text-3xl sm:text-4xl font-black font-display text-[#ffebbf] mb-1">
-                {(stats?.totalVerifiedExperts ?? 0).toLocaleString()}
-              </div>
-              <div className="text-slate-400 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
-                Mentors & Tutors in System
-              </div>
-            </div>
-
-            <div className="glass-card-premium p-6 text-center group border border-[#b58153]/30 hover:border-[#ffebbf] transition-all">
-              <div className="w-12 h-12 rounded-2xl bg-[#0a2540] border border-[#b58153]/40 flex items-center justify-center text-[#ffebbf] mx-auto mb-4 group-hover:scale-110 transition-transform shadow-md">
-                <Award size={24} />
-              </div>
-              <div className="text-3xl sm:text-4xl font-black font-display text-gold-shiny mb-1">
-                {(stats?.totalInstitutions ?? 0).toLocaleString()}
-              </div>
-              <div className="text-slate-400 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
-                Partner Colleges & Institutions
-              </div>
-            </div>
-
-            <div className="glass-card-premium p-6 text-center group border border-[#b58153]/30 hover:border-[#ffebbf] transition-all">
-              <div className="w-12 h-12 rounded-2xl bg-[#0a2540] border border-[#b58153]/40 flex items-center justify-center text-[#ffebbf] mx-auto mb-4 group-hover:scale-110 transition-transform shadow-md">
-                <Star size={24} />
-              </div>
-              <div className="text-3xl sm:text-4xl font-black font-display text-[#ffebbf] mb-1">
-                {stats?.averageRating ? `${stats.averageRating.toFixed(1)} / 5` : '5.0 / 5'}
-              </div>
-              <div className="text-slate-400 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
-                Live Average Rating
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </div>
