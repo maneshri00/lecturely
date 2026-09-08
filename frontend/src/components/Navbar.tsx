@@ -93,15 +93,22 @@ export const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden text-[#ffebbf] p-2 rounded-xl bg-[#0a2540] border border-[#b58153]/30" onClick={() => setMobileMenu(!mobileMenu)}>
-          {mobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile controls & hamburger button */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button className="text-[#ffebbf] p-2 rounded-xl bg-[#0a2540] border border-[#b58153]/30" onClick={() => setMobileMenu(!mobileMenu)}>
+            {mobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile Navigation Dropdown */}
       {mobileMenu && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#090e18] border-b border-[#0a2540] shadow-2xl px-6 py-8 space-y-4 animate-slide-down">
+          <div className="flex justify-between items-center pb-2 border-b border-[#0a2540]">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Theme Preference</span>
+            <ThemeToggle />
+          </div>
           <Link to="/experts" onClick={() => setMobileMenu(false)} className="block text-slate-200 font-semibold py-2 hover:text-[#ffebbf]">Find Experts</Link>
           <Link to="/how-it-works" onClick={() => setMobileMenu(false)} className="block text-slate-200 font-semibold py-2 hover:text-[#ffebbf]">How It Works</Link>
           <Link to="/about" onClick={() => setMobileMenu(false)} className="block text-slate-200 font-semibold py-2 hover:text-[#ffebbf]">About Us</Link>
