@@ -145,57 +145,95 @@ html.light .hero-bg-texture {
   opacity: 0.12 !important;
 }
 
-/* Light mode gradient container overrides — scope tightly to avoid hitting img wrappers */
-html.light section[class*="bg-gradient-to"],
-html.light div[class*="bg-gradient-to-br"],
-html.light div[class*="bg-gradient-to-r"] {
+/* AUTH PANEL: always dark navy with crisp white & gold text — overrides all light mode rules */
+html.light .auth-panel {
+  background: linear-gradient(135deg, #0a2540 0%, #090e18 60%, #010101 100%) !important;
+  color: #ffffff !important;
+  border-color: #0a2540 !important;
+}
+
+html.light .auth-panel h1,
+html.light .auth-panel h2,
+html.light .auth-panel h3,
+html.light .auth-panel h4,
+html.light .auth-panel h5,
+html.light .auth-panel h6,
+html.light .auth-panel .text-white {
+  color: #ffffff !important;
+}
+
+html.light .auth-panel p,
+html.light .auth-panel .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+html.light .auth-panel span,
+html.light .auth-panel .text-slate-200 {
+  color: #e2e8f0 !important;
+}
+
+html.light .auth-panel .text-slate-400,
+html.light .auth-panel .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.light .auth-panel .text-\[\#ffebbf\] {
+  color: #ffebbf !important;
+}
+
+html.light .auth-panel div[class*="bg-[#0a2540]"],
+html.light .auth-panel span[class*="bg-[#0a2540]"] {
+  background-color: #0a2540 !important;
+  color: #ffebbf !important;
+  border-color: rgba(181, 129, 83, 0.4) !important;
+}
+
+html.light .auth-panel .text-gold-gradient,
+html.light .auth-panel .text-gold-shiny {
+  background: linear-gradient(180deg, #ffebbf 0%, #b58153 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Light mode gradient container overrides */
+html.light section[class*="bg-gradient-to"]:not(.auth-panel),
+html.light div[class*="bg-gradient-to-br"]:not(.auth-panel),
+html.light div[class*="bg-gradient-to-r"]:not(.auth-panel) {
   border-color: #e2e8f0;
   color: #0f172a;
 }
 
-html.light [class*="bg-gradient-to"] h1,
-html.light [class*="bg-gradient-to"] h2,
-html.light [class*="bg-gradient-to"] h3,
-html.light [class*="bg-gradient-to"] h4,
-html.light [class*="bg-gradient-to"] h5,
-html.light [class*="bg-gradient-to"] h6,
-html.light [class*="bg-gradient-to"] label {
-  color: #0f172a !important;
-}
-
-html.light [class*="bg-gradient-to"] p,
-html.light [class*="bg-gradient-to"] span:not(.btn-primary span):not(.nav-pill-active span) {
-  color: #334155 !important;
-}
-
-/* Typography & text overrides */
-html.light .text-white,
-html.light .text-slate-100,
-html.light .text-slate-200,
-html.light .text-slate-300 {
+/* Typography & text overrides in Light Mode */
+html.light body .text-white:not(.auth-panel *),
+html.light body .text-slate-100:not(.auth-panel *),
+html.light body .text-slate-200:not(.auth-panel *) {
   color: #1e293b !important;
 }
 
-html.light .text-slate-400,
-html.light .text-slate-500 {
+html.light body .text-slate-300:not(.auth-panel *) {
+  color: #334155 !important;
+}
+
+html.light body .text-slate-400:not(.auth-panel *),
+html.light body .text-slate-500:not(.auth-panel *) {
   color: #475569 !important;
 }
 
-html.light .text-\[\#ffebbf\] {
+html.light body .text-\[\#ffebbf\]:not(.auth-panel *) {
   color: #b58153 !important;
 }
 
-html.light .text-gold-gradient,
-html.light .text-gold-shiny {
+html.light .text-gold-gradient:not(.auth-panel *),
+html.light .text-gold-shiny:not(.auth-panel *) {
   background: linear-gradient(135deg, #0f172a 0%, #b58153 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-html.light .border-\[\#0a2540\],
-html.light .border-\[\#0a2540\]\/80,
-html.light .border-\[\#b58153\]\/40,
-html.light .border-\[\#b58153\]\/30 {
+html.light .border-\[\#0a2540\]:not(.auth-panel *),
+html.light .border-\[\#0a2540\]\/80:not(.auth-panel *),
+html.light .border-\[\#b58153\]\/40:not(.auth-panel *),
+html.light .border-\[\#b58153\]\/30:not(.auth-panel *) {
   border-color: #cbd5e1 !important;
 }
 
