@@ -65,7 +65,7 @@ export function LandingPage() {
         
         {/* Educational Network Background Image Layer */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 pointer-events-none z-0 mix-blend-screen"
+          className="hero-bg-texture absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 pointer-events-none z-0 mix-blend-screen"
           style={{ backgroundImage: `url('/assets/education_hero_bg.png')` }}
         ></div>
 
@@ -139,7 +139,7 @@ export function LandingPage() {
                 {/* Real Hero Photo Container */}
                 <div className="relative glass-card-premium p-2 border border-[#b58153]/40 rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] bg-[#090e18]">
                   {/* High-res authentic lecture/mentorship photography */}
-                  <div className="relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden bg-[#010101]">
+                  <div className="hero-image-container relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden bg-[#010101]">
                     <img 
                       src="/assets/hero_speaker.png" 
                       alt="Real Guest Lecture & Mentorship Session at IIT Bombay" 
@@ -330,7 +330,7 @@ export function LandingPage() {
       {/* CTA Section */}
       <div className="bg-[#090e18] text-white py-24 relative overflow-hidden border-t border-[#0a2540]">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none z-0 mix-blend-screen"
+          className="hero-bg-texture absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none z-0 mix-blend-screen"
           style={{ backgroundImage: `url('/assets/education_hero_bg.png')` }}
         ></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#0a2540]/60 rounded-full blur-[140px] pointer-events-none"></div>

@@ -81,11 +81,18 @@ html.light header, html.light nav {
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05) !important;
 }
 
-html.light .glass-card, 
-html.light .glass-card-premium {
+html.light .glass-card {
   background-color: #ffffff !important;
   border-color: #e2e8f0 !important;
   box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+  color: #0f172a !important;
+}
+
+/* glass-card-premium: keep outer wrapper white but don't force inner image containers */
+html.light .glass-card-premium {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08) !important;
   color: #0f172a !important;
 }
 
@@ -95,15 +102,21 @@ html.light .glass-card-premium:hover {
   box-shadow: 0 10px 30px -4px rgba(181, 129, 83, 0.15) !important;
 }
 
+/* Hero image container — preserve the image area visible in light mode */
+html.light .hero-image-container {
+  background-color: #e2e8f0 !important;
+}
+
 /* Multi-tier depth: convert internal dark boxes into soft light sub-containers */
-html.light .bg-\[\#010101\],
+/* Exclude image containers and elements with overflow-hidden (likely image wrappers) */
+html.light .bg-\[\#010101\]:not(.hero-image-container),
 html.light .bg-\[\#010101\]\/95 {
   background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
   color: #0f172a !important;
 }
 
-html.light .bg-\[\#090e18\],
+html.light .bg-\[\#090e18\]:not(.hero-image-container),
 html.light .bg-\[\#090e18\]\/95,
 html.light .bg-\[\#090e18\]\/40 {
   background-color: #ffffff !important;
@@ -126,11 +139,18 @@ html.light .bg-black\/40 {
   border-color: #cbd5e1 !important;
 }
 
-/* Light mode gradient container overrides */
-html.light [class*="bg-gradient-to"] {
-  background: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  color: #0f172a !important;
+/* Light mode: background texture image — use multiply blend instead of screen */
+html.light .hero-bg-texture {
+  mix-blend-mode: multiply !important;
+  opacity: 0.12 !important;
+}
+
+/* Light mode gradient container overrides — scope tightly to avoid hitting img wrappers */
+html.light section[class*="bg-gradient-to"],
+html.light div[class*="bg-gradient-to-br"],
+html.light div[class*="bg-gradient-to-r"] {
+  border-color: #e2e8f0;
+  color: #0f172a;
 }
 
 html.light [class*="bg-gradient-to"] h1,
