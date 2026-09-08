@@ -4,8 +4,12 @@ import { publicService } from '../services/publicService';
 import { Search, BookOpen, Users, Calendar, Sparkles, ShieldCheck, ArrowRight, Award, Star, Target, GraduationCap, Microscope, Laptop, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 export function LandingPage() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const { data: statsData } = useQuery({
     queryKey: ['public-stats'],
     queryFn: publicService.getPublicStats,
@@ -13,6 +17,11 @@ export function LandingPage() {
   });
 
   const stats = statsData?.data;
+
+  // Theme-aware image assets
+  const heroBg = isDark ? '/assets/education_hero_bg.png' : '/assets/light_mode_hero_bg.png';
+  const heroSpeakerImg = isDark ? '/assets/hero_speaker.png' : '/assets/light_mode_speaker.png';
+  const professorAvatar = '/assets/professor_avatar.png';
 
   const serviceOfferings = [
     {
@@ -58,21 +67,39 @@ export function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#010101] text-white font-sans selection:bg-[#0a2540] selection:text-[#ffebbf] overflow-hidden">
+    <div className={`min-h-screen font-sans overflow-hidden transition-colors duration-300 ${
+      isDark
+        ? 'bg-[#010101] text-white selection:bg-[#0a2540] selection:text-[#ffebbf]'
+        : 'bg-[#faf8f5] text-[#0f172a] selection:bg-amber-100 selection:text-amber-900'
+    }`}>
       
       {/* Hero Section */}
       <div className="relative pt-24 pb-24 lg:pt-36 lg:pb-32 overflow-hidden">
         
-        {/* Educational Network Background Image Layer */}
+        {/* Background Image Layer — swaps by theme */}
         <div 
-          className="hero-bg-texture absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 pointer-events-none z-0 mix-blend-screen"
-          style={{ backgroundImage: `url('/assets/education_hero_bg.png')` }}
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0 transition-opacity duration-500 ${
+            isDark
+              ? 'hero-bg-texture opacity-30 mix-blend-screen'
+              : 'opacity-40'
+          }`}
+          style={{ backgroundImage: `url('${heroBg}')` }}
         ></div>
 
         {/* Ambient Glow Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#0a2540]/60 via-[#0a2540]/30 to-transparent rounded-full blur-[140px] pointer-events-none z-0"></div>
-        <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-[#b58153]/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
-        <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-[#ffebbf]/15 rounded-full blur-[130px] pointer-events-none animate-pulse-slow"></div>
+        {isDark ? (
+          <>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#0a2540]/60 via-[#0a2540]/30 to-transparent rounded-full blur-[140px] pointer-events-none z-0"></div>
+            <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-[#b58153]/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+            <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-[#ffebbf]/15 rounded-full blur-[130px] pointer-events-none animate-pulse-slow"></div>
+          </>
+        ) : (
+          <>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-amber-100/60 via-amber-50/30 to-transparent rounded-full blur-[120px] pointer-events-none z-0"></div>
+            <div className="absolute top-1/4 -left-20 w-[400px] h-[400px] bg-amber-200/30 rounded-full blur-[100px] pointer-events-none animate-pulse-slow"></div>
+            <div className="absolute bottom-10 -right-20 w-[450px] h-[450px] bg-orange-100/40 rounded-full blur-[110px] pointer-events-none animate-pulse-slow"></div>
+          </>
+        )}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -138,24 +165,36 @@ export function LandingPage() {
                 
                 {/* Real Hero Photo Container */}
                 <div className="relative glass-card-premium p-2 border border-[#b58153]/40 rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] bg-[#090e18]">
-                  {/* High-res authentic lecture/mentorship photography */}
-                  <div className="hero-image-container relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden bg-[#010101]">
+                  {/* High-res authentic lecture/mentorship photography — swaps by theme */}
+                  <div className={`hero-image-container relative h-[380px] sm:h-[420px] rounded-2xl overflow-hidden ${
+                    isDark ? 'bg-[#010101]' : 'bg-amber-50'
+                  }`}>
                     <img 
-                      src="/assets/hero_speaker.png" 
-                      alt="Real Guest Lecture & Mentorship Session at IIT Bombay" 
-                      className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-700"
+                      src={heroSpeakerImg}
+                      alt={isDark ? 'Real Guest Lecture at IIT Bombay' : 'Live 1-on-1 Mentorship Session'}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     {/* Gradient overlay for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#090e18] via-[#090e18]/20 to-transparent"></div>
+                    <div className={`absolute inset-0 bg-gradient-to-t ${
+                      isDark
+                        ? 'from-[#090e18] via-[#090e18]/20 to-transparent'
+                        : 'from-white/60 via-transparent to-transparent'
+                    }`}></div>
                   </div>
 
                   {/* Real Floating UI Card 1: Top Speaker Profile */}
-                  <div className="absolute top-5 left-5 right-5 bg-[#090e18]/95 backdrop-blur-xl border border-[#b58153]/50 p-3.5 rounded-2xl shadow-2xl animate-bounce-slow">
+                  <div className={`absolute top-5 left-5 right-5 backdrop-blur-xl border p-3.5 rounded-2xl shadow-2xl animate-bounce-slow ${
+                    isDark
+                      ? 'bg-[#090e18]/95 border-[#b58153]/50'
+                      : 'bg-white/95 border-amber-200 shadow-amber-100'
+                  }`}>
                     <div className="flex items-center gap-3">
                       <img 
-                        src="/assets/professor_avatar.png" 
+                        src={professorAvatar}
                         alt="Dr. Ramesh Kumar" 
-                        className="w-11 h-11 rounded-full object-cover border-2 border-[#ffebbf] shadow-md shrink-0"
+                        className={`w-11 h-11 rounded-full object-cover shadow-md shrink-0 border-2 ${
+                          isDark ? 'border-[#ffebbf]' : 'border-amber-400'
+                        }`}
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
@@ -328,18 +367,29 @@ export function LandingPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-[#090e18] text-white py-24 relative overflow-hidden border-t border-[#0a2540]">
+      <div className={`py-24 relative overflow-hidden border-t transition-colors duration-300 ${
+        isDark
+          ? 'bg-[#090e18] text-white border-[#0a2540]'
+          : 'bg-amber-50 text-[#0f172a] border-amber-100'
+      }`}>
+        {/* Background texture — swaps by theme */}
         <div 
-          className="hero-bg-texture absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none z-0 mix-blend-screen"
-          style={{ backgroundImage: `url('/assets/education_hero_bg.png')` }}
+          className={`absolute inset-0 bg-cover bg-center pointer-events-none z-0 transition-opacity duration-500 ${
+            isDark
+              ? 'hero-bg-texture opacity-20 mix-blend-screen'
+              : 'opacity-25'
+          }`}
+          style={{ backgroundImage: `url('${heroBg}')` }}
         ></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#0a2540]/60 rounded-full blur-[140px] pointer-events-none"></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full blur-[140px] pointer-events-none ${
+          isDark ? 'bg-[#0a2540]/60' : 'bg-amber-200/50'
+        }`}></div>
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl md:text-6xl font-black font-display mb-6 tracking-tight">
             Ready to Accelerate <span className="text-gold-shiny">Your Learning Journey?</span>
           </h2>
-          <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className={`text-lg mb-10 max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
             Join thousands of students, educators, and 1-on-1 mentors connecting across India today.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
