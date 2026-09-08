@@ -68,49 +68,96 @@ export function LandingPage() {
         <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-[#b58153]/15 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
         <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] bg-[#ffebbf]/10 rounded-full blur-[130px] pointer-events-none animate-pulse-slow"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a2540]/80 border border-[#b58153]/40 text-[#ffebbf] text-xs font-bold uppercase tracking-[0.2em] mb-8 animate-fade-in shadow-[0_0_20px_rgba(181,129,83,0.2)]">
-            <Sparkles size={14} className="text-[#ffebbf] animate-spin" style={{ animationDuration: '6s' }} />
-            <span>Never Settle For Ordinary Learning</span>
-          </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Content Side */}
+            <div className="lg:col-span-7 text-left">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a2540]/80 border border-[#b58153]/40 text-[#ffebbf] text-xs font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in shadow-[0_0_20px_rgba(181,129,83,0.2)]">
+                <Sparkles size={14} className="text-[#ffebbf] animate-spin" style={{ animationDuration: '6s' }} />
+                <span>Never Settle For Ordinary Learning</span>
+              </div>
 
-          {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black font-display text-white mb-6 animate-slide-up leading-[1.1] tracking-tight">
-            Book Elite <span className="text-gold-shiny drop-shadow-[0_10px_20px_rgba(181,129,83,0.4)]">Lecturers, Mentors & Personal Tutors</span>
-          </h1>
+              {/* Main Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display text-white mb-6 animate-slide-up leading-[1.1] tracking-tight">
+                Learn from the <span className="text-gold-shiny drop-shadow-[0_10px_20px_rgba(181,129,83,0.4)]">People Who Know It Best</span>
+              </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 animate-fade-in font-normal leading-relaxed">
-            Connect directly with verified professors, research guides, 1-on-1 mentors, and personal tutors across India.
-          </p>
+              <p className="text-base sm:text-lg text-slate-300 mb-8 animate-fade-in font-normal leading-relaxed">
+                Connect directly with verified IIT professors, industry leaders, 1-on-1 mentors, and personal tutors across India.
+              </p>
 
-          {/* Service Role Quick Nav Pills */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-            {serviceOfferings.map((srv) => (
-              <Link key={srv.filter} to={`/experts?service=${srv.filter}`}>
-                <span className="px-4 py-2 bg-[#0a2540] hover:bg-[#b58153] text-white hover:text-[#010101] border border-[#b58153]/40 text-xs font-extrabold rounded-full transition-all duration-200 shadow-md flex items-center gap-1.5">
-                  {srv.badge}
-                </span>
-              </Link>
-            ))}
-          </div>
+              {/* Service Role Quick Nav Pills */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {serviceOfferings.map((srv) => (
+                  <Link key={srv.filter} to={`/experts?service=${srv.filter}`}>
+                    <span className="px-3.5 py-1.5 bg-[#0a2540] hover:bg-[#b58153] text-white hover:text-[#010101] border border-[#b58153]/40 text-xs font-extrabold rounded-full transition-all duration-200 shadow-md flex items-center gap-1.5">
+                      {srv.badge}
+                    </span>
+                  </Link>
+                ))}
+              </div>
 
-          {/* Search Bar */}
-          <div className="max-w-3xl mx-auto bg-[#090e18]/95 border border-[#0a2540] hover:border-[#b58153]/70 p-2.5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col sm:flex-row items-center gap-3 mb-10 transition-all duration-300 hover:shadow-[0_0_40px_rgba(181,129,83,0.3)]">
-            <div className="flex items-center w-full px-3 py-1">
-              <Search className="text-[#ffebbf] shrink-0 mr-3" size={24} />
-              <input 
-                type="text" 
-                placeholder="What topic do you want to learn? (e.g. AI/ML, Personal Tutoring, Mentorship)"
-                className="w-full !bg-transparent border-none focus:ring-0 text-base md:text-lg text-white placeholder:text-slate-400 outline-none shadow-none"
-              />
+              {/* Search Bar */}
+              <div className="bg-[#090e18]/95 border border-[#0a2540] hover:border-[#b58153]/70 p-2.5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col sm:flex-row items-center gap-3 transition-all duration-300 hover:shadow-[0_0_40px_rgba(181,129,83,0.3)]">
+                <div className="flex items-center w-full px-3 py-1">
+                  <Search className="text-[#ffebbf] shrink-0 mr-3" size={22} />
+                  <input 
+                    type="text" 
+                    placeholder="What topic do you want to learn? (e.g. AI/ML, Tutoring)"
+                    className="w-full !bg-transparent border-none focus:ring-0 text-sm sm:text-base text-white placeholder:text-slate-400 outline-none shadow-none"
+                  />
+                </div>
+                <Link to="/experts" className="w-full sm:w-auto shrink-0">
+                  <Button size="md" variant="primary" className="w-full sm:w-auto rounded-xl px-6 py-3 text-sm font-black shadow-ns-gold whitespace-nowrap">
+                    Search Directory
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Trust Callout */}
+              <div className="mt-6 flex items-center gap-6 text-xs text-slate-400 font-semibold">
+                <span className="flex items-center gap-1.5"><ShieldCheck size={16} className="text-emerald-400" /> Verified Experts</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={16} className="text-[#ffebbf]" /> Escrow Guarantee</span>
+                <span className="flex items-center gap-1.5"><Award size={16} className="text-amber-400" /> Top Institutions</span>
+              </div>
             </div>
-            <Link to="/experts" className="w-full sm:w-auto shrink-0">
-              <Button size="lg" variant="primary" className="w-full sm:w-auto rounded-xl px-8 py-3.5 text-base font-black shadow-ns-gold">
-                Search Directory
-              </Button>
-            </Link>
+
+            {/* Right Ecosystem Illustration Visual Side */}
+            <div className="lg:col-span-5 relative flex justify-center items-center">
+              <div className="relative group w-full max-w-lg">
+                {/* Glow ring */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#ffebbf]/30 to-[#b58153]/30 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                
+                {/* Visual Container */}
+                <div className="relative glass-card-premium p-3 border border-[#b58153]/40 rounded-3xl overflow-hidden shadow-2xl bg-[#090e18]">
+                  <img 
+                    src="/assets/hero_ecosystem.png" 
+                    alt="Lecturely Expert to Student Ecosystem" 
+                    className="w-full h-auto rounded-2xl object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Floating Overlay Badge 1 */}
+                  <div className="absolute top-6 left-6 bg-[#090e18]/90 backdrop-blur-md border border-[#b58153]/50 px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 animate-bounce-slow">
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#ffebbf] to-[#b58153] flex items-center justify-center text-[#010101] font-black text-xs">
+                      🎓
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 uppercase font-bold block">Live Ecosystem</span>
+                      <span className="text-xs font-black text-[#ffebbf]">Expert ↔ Student</span>
+                    </div>
+                  </div>
+
+                  {/* Floating Overlay Badge 2 */}
+                  <div className="absolute bottom-6 right-6 bg-[#090e18]/90 backdrop-blur-md border border-emerald-500/50 px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
+                    <span className="text-xs font-bold text-emerald-300">100% Verified Mentors</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
