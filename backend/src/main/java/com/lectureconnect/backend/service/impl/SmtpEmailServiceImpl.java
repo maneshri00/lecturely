@@ -22,8 +22,13 @@ public class SmtpEmailServiceImpl implements EmailService {
 
     private final JavaMailSender mailSender;
 
-    public SmtpEmailServiceImpl(JavaMailSender mailSender) {
+    private final String senderEmail;
+
+    public SmtpEmailServiceImpl(JavaMailSender mailSender,
+            @org.springframework.beans.factory.annotation.Value("${spring.mail.username:maneshriraj7@gmail.com}") String senderEmail) {
         this.mailSender = mailSender;
+        this.senderEmail = senderEmail;
+        log.info("📧 SmtpEmailServiceImpl initialized. Sender: {}", senderEmail);
     }
 
     private final java.util.concurrent.ExecutorService executor = java.util.concurrent.Executors.newFixedThreadPool(10);
@@ -33,18 +38,14 @@ public class SmtpEmailServiceImpl implements EmailService {
             try {
                 MimeMessage message = mailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+                helper.setFrom(senderEmail, "Lecturely India");
                 helper.setTo(toEmail);
                 helper.setSubject(subject);
                 helper.setText(htmlContent, true);
                 mailSender.send(message);
-                log.info("✅ REAL SMTP EMAIL SENT SUCCESSFULLY TO INBOX: {} | SUBJECT: {}", toEmail, subject);
+                log.info("✅ EMAIL SENT → TO: {} | SUBJECT: {}", toEmail, subject);
             } catch (Exception e) {
-                log.warn("⚠️ REAL SMTP EMAIL NOT SENT TO [{}] - Reason: SMTP Username/Password not configured in application.yml ({})", toEmail, e.getMessage());
-                log.info("\n╔══════════════════════════════════════════════════════════╗\n" +
-                         "║ 📧 FALLBACK CONSOLE LOG (Configure SMTP to receive in Gmail)\n" +
-                         "║ RECIPIENT : {}\n" +
-                         "║ SUBJECT   : {}\n" +
-                         "╚══════════════════════════════════════════════════════════╝", toEmail, subject);
+                log.error("❌ EMAIL FAILED → TO: {} | SUBJECT: {} | ERROR: {}", toEmail, subject, e.getMessage(), e);
             }
         });
     }
