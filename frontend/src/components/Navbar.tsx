@@ -9,17 +9,34 @@ import { useAuthStore } from '../store/authStore';
 export const Navbar = () => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
-  
+  const lastScrollY = React.useRef(0);
+
   const { user, isAuthenticated, logout } = useAuthStore();
   const isLoggedIn = isAuthenticated && !!user;
 
-  const dashboardPath = user?.role === 'EXPERT' ? '/expert/dashboard' : user?.role === 'ADMIN' ? '/admin/dashboard' : '/student/dashboard';
+  const dashboardPath =
+    user?.role === 'EXPERT'
+      ? '/expert/dashboard'
+      : user?.role === 'ADMIN'
+      ? '/admin/dashboard'
+      : '/student/dashboard';
   const profilePath = user?.role === 'EXPERT' ? '/expert/profile' : '/student/profile';
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+      // Hide navbar when scrolling down past 80px, show when scrolling up
+      if (currentY > 80) {
+        setVisible(currentY < lastScrollY.current);
+      } else {
+        setVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -29,9 +46,17 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#010101]/90 backdrop-blur-2xl border-b border-[#0a2540] shadow-md py-3' : 'bg-[#010101] border-b border-[#0a2540]/80 py-4'}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${
+        visible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      } ${
+        scrolled
+          ? 'bg-[#010101]/90 backdrop-blur-2xl border-b border-[#0a2540] shadow-md py-3'
+          : 'bg-[#010101] border-b border-[#0a2540]/80 py-4'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        
+
         {/* Brand Logo - Lecturely */}
         <Link to="/" className="flex items-center gap-3 group">
           <div className="relative">
@@ -55,12 +80,12 @@ export const Navbar = () => {
           <Link to="/experts" className="text-sm font-semibold text-slate-300 hover:text-[#ffebbf] transition-colors duration-200">Find Experts</Link>
           <Link to="/how-it-works" className="text-sm font-semibold text-slate-300 hover:text-[#ffebbf] transition-colors duration-200">How It Works</Link>
           <Link to="/about" className="text-sm font-semibold text-slate-300 hover:text-[#ffebbf] transition-colors duration-200">About Us</Link>
-          
+
           <ThemeToggle />
 
           {isLoggedIn ? (
             <div className="flex items-center space-x-4 pl-4 border-l border-[#0a2540]">
-              <Link 
+              <Link
                 to={dashboardPath}
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#ffebbf] hover:text-white bg-[#0a2540] px-3.5 py-2 rounded-xl border border-[#b58153]/40 hover:border-[#ffebbf] transition"
               >
@@ -68,8 +93,8 @@ export const Navbar = () => {
                 <span>Dashboard</span>
               </Link>
               <NotificationBell />
-              <Link 
-                to={profilePath} 
+              <Link
+                to={profilePath}
                 title={`View ${user.fullName}'s Profile`}
                 className="w-10 h-10 bg-gradient-to-br from-[#ffebbf] to-[#b58153] text-[#010101] rounded-full flex items-center justify-center font-black text-sm hover:scale-105 border-2 border-[#ffebbf] transition shadow-md"
               >
@@ -101,7 +126,7 @@ export const Navbar = () => {
           </button>
         </div>
       </div>
-      
+
       {/* Mobile Navigation Dropdown */}
       {mobileMenu && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#090e18] border-b border-[#0a2540] shadow-2xl px-6 py-8 space-y-4 animate-slide-down">
@@ -112,7 +137,7 @@ export const Navbar = () => {
           <Link to="/experts" onClick={() => setMobileMenu(false)} className="block text-slate-200 font-semibold py-2 hover:text-[#ffebbf]">Find Experts</Link>
           <Link to="/how-it-works" onClick={() => setMobileMenu(false)} className="block text-slate-200 font-semibold py-2 hover:text-[#ffebbf]">How It Works</Link>
           <Link to="/about" onClick={() => setMobileMenu(false)} className="block text-slate-200 font-semibold py-2 hover:text-[#ffebbf]">About Us</Link>
-          
+
           <div className="pt-4 border-t border-[#0a2540] flex flex-col space-y-3">
             {isLoggedIn ? (
               <>

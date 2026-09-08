@@ -8,7 +8,8 @@ export const PublicLayout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#010101] text-white selection:bg-[#0a2540] selection:text-[#ffebbf]">
       <Navbar />
-      <main className="flex-grow">
+      {/* pt-16 reserves space for fixed navbar (64px height) */}
+      <main className="flex-grow pt-16">
         <Outlet />
       </main>
       <Footer />
