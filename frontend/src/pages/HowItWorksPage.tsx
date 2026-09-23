@@ -2,8 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowRight } from 'lucide-react';
 import { Button } from '../components/Button';
+import { useAuthStore } from '../store/authStore';
 
 export const HowItWorksPage: React.FC = () => {
+  const { user, isAuthenticated } = useAuthStore();
+  const getStartedRoute = isAuthenticated && user
+    ? user.role === 'ADMIN'
+      ? '/admin/dashboard'
+      : user.role === 'EXPERT'
+      ? '/expert/dashboard'
+      : '/student/dashboard'
+    : '/register';
+
   return (
     <div className="py-16 bg-[#010101] text-white min-h-screen relative overflow-hidden">
       {/* Background glow */}
@@ -78,9 +88,9 @@ export const HowItWorksPage: React.FC = () => {
           <p className="text-slate-300 max-w-2xl mx-auto mb-8 text-base leading-relaxed">
             Every teacher and expert on our platform passes thorough credential verification by our Admin team before being listed.
           </p>
-          <Link to="/register">
+          <Link to={getStartedRoute}>
             <Button size="lg" className="px-8 py-3.5 text-base shadow-ns-gold">
-              Get Started Now <ArrowRight size={18} className="ml-2 inline" />
+              {isAuthenticated ? 'Go to Dashboard' : 'Get Started Now'} <ArrowRight size={18} className="ml-2 inline" />
             </Button>
           </Link>
         </div>

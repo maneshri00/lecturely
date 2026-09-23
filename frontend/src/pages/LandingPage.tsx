@@ -5,10 +5,20 @@ import { Search, BookOpen, Users, Calendar, Sparkles, ShieldCheck, ArrowRight, A
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { useAuthStore } from '../store/authStore';
 
 export function LandingPage() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+
+  const { user, isAuthenticated } = useAuthStore();
+  const applyRoute = isAuthenticated && user
+    ? user.role === 'ADMIN'
+      ? '/admin/dashboard'
+      : user.role === 'EXPERT'
+      ? '/expert/dashboard'
+      : '/student/dashboard'
+    : '/register';
 
   const { data: statsData } = useQuery({
     queryKey: ['public-stats'],
@@ -266,9 +276,9 @@ export function LandingPage() {
                 Find a Mentor / Tutor <ArrowRight size={18} className="ml-2 inline" />
               </Button>
             </Link>
-            <Link to="/register">
+            <Link to={applyRoute}>
               <Button size="lg" variant="secondary" className="px-8 text-base">
-                Apply as a Mentor / Tutor
+                {isAuthenticated ? 'Go to Dashboard' : 'Apply as a Mentor / Tutor'}
               </Button>
             </Link>
           </div>

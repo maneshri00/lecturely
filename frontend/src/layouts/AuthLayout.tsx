@@ -1,9 +1,22 @@
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, Navigate } from 'react-router-dom';
 import { GoldChevronIcon } from '../components/GoldChevronIcon';
 import { CheckCircle2, Sparkles } from 'lucide-react';
+import { useAuthStore } from '../store/authStore';
 
 export const AuthLayout: React.FC = () => {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (isAuthenticated && user) {
+    const dashboardPath =
+      user.role === 'ADMIN'
+        ? '/admin/dashboard'
+        : user.role === 'EXPERT'
+        ? '/expert/dashboard'
+        : '/student/dashboard';
+    return <Navigate to={dashboardPath} replace />;
+  }
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#010101] text-white selection:bg-[#0a2540] selection:text-[#ffebbf]">
 
