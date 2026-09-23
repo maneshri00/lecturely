@@ -5,6 +5,7 @@ import { expertService } from '../services/expertService';
 import { ExpertCard } from '../components/ExpertCard';
 import { SERVICE_CATEGORIES, SESSION_MODES } from '../utils/constants';
 import { Search, Filter, RefreshCw, Award, Linkedin, ShieldCheck, Star, Sparkles } from 'lucide-react';
+import { SEOHead } from '../components/SEOHead';
 
 interface ExpertsPageProps {
   isExpertPortal?: boolean;

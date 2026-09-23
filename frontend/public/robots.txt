@@ -1,0 +1,20 @@
+# Robots.txt for Lecturely India
+User-agent: *
+Allow: /
+Allow: /experts
+Allow: /how-it-works
+Allow: /about
+Allow: /policies
+Allow: /terms
+Allow: /privacy
+Allow: /refund-policy
+
+# Disallow Private User & Admin Dashboards from Search Engines
+Disallow: /student/
+Disallow: /expert/
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+
+# Sitemap location
+Sitemap: https://lecturely.netlify.app/sitemap.xml

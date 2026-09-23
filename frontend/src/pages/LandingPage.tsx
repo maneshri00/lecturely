@@ -6,6 +6,7 @@ import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useAuthStore } from '../store/authStore';
+import { SEOHead } from '../components/SEOHead';
 
 export function LandingPage() {
   const { theme } = useTheme();
@@ -82,6 +83,12 @@ export function LandingPage() {
         ? 'bg-[#010101] text-white selection:bg-[#0a2540] selection:text-[#ffebbf]'
         : 'bg-[#faf8f5] text-[#0f172a] selection:bg-amber-100 selection:text-amber-900'
     }`}>
+      <SEOHead
+        title="Lecturely India — Book IIT Professors, Guest Lectures, 1-on-1 Mentors & Personal Tutors"
+        description="Connect directly with India's top verified IIT professors, Google staff engineers, research advisors, and 1-on-1 tutors. Book college guest lectures, technical workshops, GATE/AI-ML mentorship, and thesis guidance with Razorpay escrow protection."
+        keywords="Lecturely India, Guest Lectures in India, IIT Professors for Lectures, 1-on-1 Personal Tutor India, Engineering College Speakers, AI ML Mentors, Ph.D Research Advisors, GATE Tutors India, College Seminar Booking, Escrow Education Payments"
+        canonicalPath="/"
+      />
       
       {/* Hero Section */}
       <div className="relative pt-24 pb-24 lg:pt-36 lg:pb-32 overflow-hidden">
@@ -323,6 +330,64 @@ export function LandingPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* SEO Keyword & Directory Footer Section */}
+      <div className={`py-16 border-t relative transition-colors duration-300 ${
+        isDark ? 'bg-[#010101] border-[#0a2540] text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-600'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className={`text-xl font-bold font-display uppercase tracking-widest ${isDark ? 'text-[#ffebbf]' : 'text-amber-800'}`}>
+              India's Premier Academic & Technical Expert Directory
+            </h2>
+            <p className="text-xs mt-2 leading-relaxed">
+              Lecturely India is the trusted marketplace for Indian engineering colleges, university student councils, Ph.D. scholars, and competitive exam aspirants to connect directly with verified IIT professors, industry leaders, 1-on-1 mentors, and personal tutors.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-xs">
+            <div>
+              <h3 className={`font-extrabold uppercase tracking-wider mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Guest Lectures</h3>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/experts?service=GUEST_LECTURE" className="hover:underline">IIT Bombay Guest Speakers</Link></li>
+                <li><Link to="/experts?service=GUEST_LECTURE" className="hover:underline">AI & Robotics Keynote Speakers</Link></li>
+                <li><Link to="/experts?service=GUEST_LECTURE" className="hover:underline">VLSI & Chip Design Lectures</Link></li>
+                <li><Link to="/experts?service=GUEST_LECTURE" className="hover:underline">Cybersecurity College Seminars</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className={`font-extrabold uppercase tracking-wider mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>1-on-1 Mentorship</h3>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/experts?service=MENTORSHIP" className="hover:underline">Google & Microsoft Engineers</Link></li>
+                <li><Link to="/experts?service=MENTORSHIP" className="hover:underline">Higher Education & MS Abroad</Link></li>
+                <li><Link to="/experts?service=MENTORSHIP" className="hover:underline">Mock Technical Interviews</Link></li>
+                <li><Link to="/experts?service=MENTORSHIP" className="hover:underline">Career Roadmap Guidance</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className={`font-extrabold uppercase tracking-wider mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Personal Tutoring</h3>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/experts?service=PERSONAL_TUTOR" className="hover:underline">GATE CS & ECE Tutors</Link></li>
+                <li><Link to="/experts?service=PERSONAL_TUTOR" className="hover:underline">Data Structures & Algorithms</Link></li>
+                <li><Link to="/experts?service=PERSONAL_TUTOR" className="hover:underline">University Semester Coursework</Link></li>
+                <li><Link to="/experts?service=PERSONAL_TUTOR" className="hover:underline">Calculus & Engineering Physics</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className={`font-extrabold uppercase tracking-wider mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Research & Bootcamps</h3>
+              <ul className="space-y-1.5 font-medium">
+                <li><Link to="/experts?service=RESEARCH_ADVISOR" className="hover:underline">IEEE & Scopus Journal Writing</Link></li>
+                <li><Link to="/experts?service=RESEARCH_ADVISOR" className="hover:underline">Ph.D. Thesis Review Advisors</Link></li>
+                <li><Link to="/experts?service=WORKSHOP_TRAINER" className="hover:underline">Full-Stack Web Dev Bootcamps</Link></li>
+                <li><Link to="/experts?service=WORKSHOP_TRAINER" className="hover:underline">Cloud Computing & DevOps Labs</Link></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

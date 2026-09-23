@@ -1,8 +1,15 @@
 import React from 'react';
+import { SEOHead } from '../components/SEOHead';
 
 export const AboutPage: React.FC = () => {
   return (
     <div className="py-12 bg-[#010101] text-white min-h-screen">
+      <SEOHead
+        title="About Lecturely India — Bridging Academic Theory with Real-World Industry Expertise"
+        description="Learn how Lecturely India connects engineering colleges, Ph.D. scholars, and students with top IIT professors, Google engineers, and industry leaders across India."
+        keywords="About Lecturely India, Academic Industry Bridge, IIT Faculty Marketplace, College Guest Lecture Network India"
+        canonicalPath="/about"
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-[#ffebbf] uppercase tracking-widest bg-[#0a2540] border border-[#b58153]/40 px-3.5 py-1.5 rounded-full inline-block mb-3">About Us</span>

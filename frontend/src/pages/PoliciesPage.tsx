@@ -6,6 +6,7 @@ import {
   Scale, CheckCircle2, ChevronRight, Gavel, Eye, Sparkles,
   PhoneOff, DollarSign, UserX, ShieldAlert
 } from 'lucide-react';
+import { SEOHead } from '../components/SEOHead';
 
 export const PoliciesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,6 +18,12 @@ export const PoliciesPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-white min-h-screen">
+      <SEOHead
+        title="Platform Policies & Terms — Lecturely Escrow Protection & Rules"
+        description="Read official Lecturely India platform terms, escrow protection policies, anti-bypass rules, and refund policy guarantees."
+        keywords="Lecturely Policies, Escrow Protection Rules, Guest Lecture Terms India, Educator Platform Policy"
+        canonicalPath="/policies"
+      />
       {/* Header Banner */}
       <div className="glass-card-premium p-6 sm:p-10 border border-[#0a2540] bg-[#090e18] rounded-3xl mb-8 relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#b58153]/10 rounded-full blur-3xl pointer-events-none" />

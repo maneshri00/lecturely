@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowRight } from 'lucide-react';
 import { Button } from '../components/Button';
 import { useAuthStore } from '../store/authStore';
+import { SEOHead } from '../components/SEOHead';
 
 export const HowItWorksPage: React.FC = () => {
   const { user, isAuthenticated } = useAuthStore();
@@ -16,6 +17,12 @@ export const HowItWorksPage: React.FC = () => {
 
   return (
     <div className="py-16 bg-[#010101] text-white min-h-screen relative overflow-hidden">
+      <SEOHead
+        title="How Lecturely Works — Book College Speakers & Personal Tutors in 4 Steps"
+        description="Learn how Indian colleges, student committees, and scholars book verified IIT professors, keynote speakers, and 1-on-1 tutors in 4 simple steps with Razorpay escrow protection."
+        keywords="How Lecturely Works, Book IIT Guest Speakers, College Guest Lecture Booking Process, Escrow Tutoring India, Google Meet Lecture Delivery"
+        canonicalPath="/how-it-works"
+      />
       {/* Background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0a2540]/50 rounded-full blur-[140px] pointer-events-none"></div>
 
