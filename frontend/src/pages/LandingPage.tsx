@@ -234,8 +234,49 @@ export function LandingPage() {
         </div>
       </div>
 
+      {/* CTA Section — Positioned directly below Hero Section */}
+      <div className={`py-20 relative overflow-hidden border-t border-b transition-colors duration-300 ${
+        isDark
+          ? 'bg-[#090e18] text-white border-[#0a2540]'
+          : 'bg-amber-50 text-[#0f172a] border-amber-100'
+      }`}>
+        {/* Background texture — swaps by theme */}
+        <div 
+          className={`absolute inset-0 bg-cover bg-center pointer-events-none z-0 transition-opacity duration-500 ${
+            isDark
+              ? 'hero-bg-texture opacity-20 mix-blend-screen'
+              : 'opacity-25'
+          }`}
+          style={{ backgroundImage: `url('${heroBg}')` }}
+        ></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full blur-[140px] pointer-events-none ${
+          isDark ? 'bg-[#0a2540]/60' : 'bg-amber-200/50'
+        }`}></div>
+
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black font-display mb-6 tracking-tight">
+            Ready to Accelerate <span className="text-gold-shiny">Your Learning Journey?</span>
+          </h2>
+          <p className={`text-base sm:text-lg mb-8 max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+            Join thousands of students, educators, and 1-on-1 mentors connecting across India today.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/experts">
+              <Button size="lg" variant="primary" className="px-8 text-base shadow-ns-gold">
+                Find a Mentor / Tutor <ArrowRight size={18} className="ml-2 inline" />
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button size="lg" variant="secondary" className="px-8 text-base">
+                Apply as a Mentor / Tutor
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Services Offerings Section */}
-      <div className={`py-20 border-y relative transition-colors duration-300 ${
+      <div className={`py-20 border-b relative transition-colors duration-300 ${
         isDark ? 'bg-[#090e18] border-[#0a2540]' : 'bg-white border-amber-100'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -385,47 +426,6 @@ export function LandingPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className={`py-24 relative overflow-hidden border-t transition-colors duration-300 ${
-        isDark
-          ? 'bg-[#090e18] text-white border-[#0a2540]'
-          : 'bg-amber-50 text-[#0f172a] border-amber-100'
-      }`}>
-        {/* Background texture — swaps by theme */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center pointer-events-none z-0 transition-opacity duration-500 ${
-            isDark
-              ? 'hero-bg-texture opacity-20 mix-blend-screen'
-              : 'opacity-25'
-          }`}
-          style={{ backgroundImage: `url('${heroBg}')` }}
-        ></div>
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full blur-[140px] pointer-events-none ${
-          isDark ? 'bg-[#0a2540]/60' : 'bg-amber-200/50'
-        }`}></div>
-
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black font-display mb-6 tracking-tight">
-            Ready to Accelerate <span className="text-gold-shiny">Your Learning Journey?</span>
-          </h2>
-          <p className={`text-lg mb-10 max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-            Join thousands of students, educators, and 1-on-1 mentors connecting across India today.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/experts">
-              <Button size="lg" variant="primary" className="px-8 text-base shadow-ns-gold">
-                Find a Mentor / Tutor <ArrowRight size={18} className="ml-2 inline" />
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button size="lg" variant="secondary" className="px-8 text-base">
-                Apply as a Mentor / Tutor
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
