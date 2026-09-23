@@ -189,9 +189,8 @@ export const CreateRequirementPage: React.FC = () => {
               </div>
             </div>
             <div className="text-right font-mono">
-              <div className="text-[10px] text-slate-400 font-medium uppercase">Total Fee (incl. 10% Platform Fee)</div>
+              <div className="text-[10px] text-slate-400 font-medium uppercase">Total Session Fee</div>
               <div className="text-sm font-black text-[#ffebbf]">{formatCurrency(feeInfo.totalFee)}</div>
-              <div className="text-[10px] text-slate-400">({formatCurrency(feeInfo.baseFee)} base + {formatCurrency(feeInfo.platformFee)} platform)</div>
             </div>
           </div>
         );

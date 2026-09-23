@@ -187,7 +187,7 @@ export const ExpertProfilePage: React.FC = () => {
               <div className="mt-6 pt-6 border-t border-[#0a2540] space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs font-bold text-[#ffebbf] uppercase tracking-wider flex items-center gap-1.5">
-                    <Star className="w-3.5 h-3.5 text-[#ffebbf]" /> Services Offered & Pricing Breakdown (Incl. 10% Platform Fee)
+                    <Star className="w-3.5 h-3.5 text-[#ffebbf]" /> Services Offered & Session Pricing
                   </h3>
                   <span className="text-[10px] text-slate-400 font-medium">Select a service to book</span>
                 </div>
@@ -213,9 +213,6 @@ export const ExpertProfilePage: React.FC = () => {
                             </span>
                           </div>
                           <p className="text-[11px] text-slate-300 mt-1">{cat.desc}</p>
-                          <p className="text-[10px] text-slate-400 font-mono mt-1">
-                            ({formatCurrency(srvFeeInfo.baseFee)} + {formatCurrency(srvFeeInfo.platformFee)} 10% platform fee)
-                          </p>
                         </div>
 
                         <button
@@ -340,12 +337,9 @@ export const ExpertProfilePage: React.FC = () => {
         <div className="space-y-6">
           <div className="glass-card-premium p-6 border border-[#0a2540] bg-[#090e18] sticky top-24 shadow-2xl space-y-4 rounded-3xl">
             <div className="text-center pb-4 border-b border-[#0a2540] space-y-1">
-              <span className="text-xs font-bold text-[#ffebbf] uppercase tracking-wider">Total Payable Session Fee</span>
+              <span className="text-xs font-bold text-[#ffebbf] uppercase tracking-wider">Total Session Fee</span>
               <div className="text-3xl font-black text-white mt-1">
                 {formatCurrency(feeInfo.totalFee)}
-              </div>
-              <div className="text-[11px] text-slate-400 font-mono bg-[#010101] py-1 px-3 rounded-lg border border-[#0a2540] inline-block">
-                Base Fee {formatCurrency(feeInfo.baseFee)} + 10% Platform Fee ({formatCurrency(feeInfo.platformFee)})
               </div>
             </div>
 

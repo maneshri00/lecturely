@@ -95,7 +95,7 @@ export const StudentBookingsPage: React.FC = () => {
                 <div className="pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center gap-4 text-xs text-slate-300 flex-wrap font-medium">
                     <span className="flex items-center gap-1 font-bold text-[#ffebbf]">
-                      Total Fee: {formatCurrency(feeInfo.totalFee)} <span className="text-[10px] text-slate-400 font-mono">({formatCurrency(feeInfo.baseFee)} + {formatCurrency(feeInfo.platformFee)} 10% platform fee)</span>
+                      Total Fee: {formatCurrency(feeInfo.totalFee)}
                     </span>
                     <span>Duration: {booking.durationMinutes || 60} mins</span>
                     <span>Requested: {formatDate(booking.createdAt)}</span>

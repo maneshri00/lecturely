@@ -88,7 +88,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           </div>
           <div className="mt-4 flex justify-between items-end">
             <div>
-              <span className="text-xs text-slate-400 block font-semibold">Total Payable Amount (incl. 10% Platform Fee)</span>
+              <span className="text-xs text-slate-400 block font-semibold">Total Payable Amount</span>
               <div className="text-3xl font-black text-[#ffebbf] mt-0.5">{formatCurrency(sessionFee)}</div>
             </div>
             <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full font-bold uppercase tracking-wider">
@@ -120,20 +120,10 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             </div>
           ) : (
             <form onSubmit={handleSubmitQrPayment} className="space-y-5">
-              {/* Fee Breakdown Box */}
-              <div className="bg-[#010101] border border-[#0a2540] p-4 rounded-2xl space-y-2 text-xs">
-                <div className="flex justify-between text-slate-300">
-                  <span>Base Speaker Fee</span>
-                  <span className="font-bold text-white">{formatCurrency(baseSpeakerFee)}</span>
-                </div>
-                <div className="flex justify-between text-slate-400">
-                  <span>Platform Commission (10%)</span>
-                  <span className="font-semibold text-amber-300">+{formatCurrency(computedPlatformFee)}</span>
-                </div>
-                <div className="flex justify-between text-[#ffebbf] font-black text-sm pt-1 border-t border-[#0a2540]">
-                  <span>Total Payable Amount</span>
-                  <span>{formatCurrency(sessionFee)}</span>
-                </div>
+              {/* Fee Box */}
+              <div className="bg-[#010101] border border-[#0a2540] p-4 rounded-2xl flex justify-between items-center text-xs">
+                <span className="text-slate-300 font-bold uppercase tracking-wider">Total Payable Amount</span>
+                <span className="text-[#ffebbf] font-black text-base">{formatCurrency(sessionFee)}</span>
               </div>
 
               {/* QR Image Box */}
@@ -153,7 +143,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                   />
                 </div>
                 <p className="text-[11px] text-slate-400 font-medium">
-                  Scan the QR code above using any UPI app and complete payment of <span className="text-[#ffebbf] font-bold">{formatCurrency(sessionFee)}</span> (Base {formatCurrency(baseSpeakerFee)} + {formatCurrency(computedPlatformFee)} platform fee)
+                  Scan the QR code above using any UPI app and complete payment of <span className="text-[#ffebbf] font-bold">{formatCurrency(sessionFee)}</span>.
                 </p>
               </div>
 

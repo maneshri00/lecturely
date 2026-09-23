@@ -501,18 +501,18 @@ export const PoliciesPage: React.FC = () => {
               <div className="space-y-6">
                 <div className="border-b border-[#0a2540] pb-4 flex items-center justify-between">
                   <h2 className="text-2xl font-black font-display text-white flex items-center gap-2.5">
-                    <CreditCard className="w-6 h-6 text-[#ffebbf]" /> Payment Policy & 10% Platform Fee
+                    <CreditCard className="w-6 h-6 text-[#ffebbf]" /> Payment & Escrow Policy
                   </h2>
                   <span className="text-xs text-amber-300 font-mono font-bold bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
-                    Transparent Pricing (Model A)
+                    Escrow Protection
                   </span>
                 </div>
 
                 <div className="space-y-4 text-sm text-slate-300">
                   <div className="p-4 bg-[#010101] border border-[#0a2540] rounded-2xl space-y-2 text-center font-mono">
-                    <div className="text-xs text-[#ffebbf] font-bold uppercase tracking-wider">Pricing Calculation</div>
+                    <div className="text-xs text-[#ffebbf] font-bold uppercase tracking-wider">Session Pricing</div>
                     <div className="text-sm text-white font-bold">
-                      Total Payable = Base Speaker Fee + 10% Platform Commission
+                      All listed rates represent the complete total payable session fee.
                     </div>
                   </div>
 

@@ -53,8 +53,8 @@ export const calculateFeeDetails = (baseFee: number | undefined | null) => {
     baseFee: fee,
     platformFee,
     totalFee,
-    displayText: `${formatCurrency(totalFee)} (incl. 10% platform fee)`,
-    breakdownText: `${formatCurrency(fee)} base + ${formatCurrency(platformFee)} platform fee (10%) = ${formatCurrency(totalFee)} total`
+    displayText: `${formatCurrency(totalFee)}`,
+    breakdownText: `${formatCurrency(totalFee)}`
   };
 };
 

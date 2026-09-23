@@ -144,15 +144,14 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({ expert, showMatchScore, 
         ))}
       </div>
 
-      {/* Fee Display Including 10% Platform Fee */}
+      {/* Fee Display */}
       <div className="pt-4 border-t border-[#0a2540] flex items-center justify-between mt-auto">
         <div>
           <p className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">
-            Total Payable (incl. 10% Platform Fee)
+            Total Session Fee
           </p>
           <div className="flex items-baseline gap-1.5">
             <span className="font-black text-[#ffebbf] text-lg">{formatCurrency(feeInfo.totalFee)}</span>
-            <span className="text-[10px] text-slate-400 font-mono">({formatCurrency(feeInfo.baseFee)} + {formatCurrency(feeInfo.platformFee)})</span>
           </div>
         </div>
         <div className="flex gap-2">

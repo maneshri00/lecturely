@@ -139,30 +139,14 @@ export const BookingCalendarModal: React.FC<BookingCalendarModalProps> = ({
           </button>
         </div>
 
-        {/* Platform Fee Notice Box Before Booking Slot */}
-        <div className="p-4 bg-[#010101] border-2 border-[#b58153]/50 rounded-2xl space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#ffebbf] uppercase tracking-wider flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#ffebbf]" /> Fee Breakdown (Includes 10% Platform Fee)
-            </span>
-            <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-extrabold uppercase">
-              Transparent Pricing
-            </span>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono pt-1">
-            <div className="p-2 bg-[#090e18] rounded-xl border border-[#0a2540]">
-              <span className="text-[10px] text-slate-400 uppercase font-bold block">Base Speaker Fee</span>
-              <span className="font-bold text-white">{formatCurrency(feeInfo.baseFee)}</span>
-            </div>
-            <div className="p-2 bg-[#090e18] rounded-xl border border-[#0a2540]">
-              <span className="text-[10px] text-slate-400 uppercase font-bold block">+ 10% Platform Fee</span>
-              <span className="font-bold text-amber-300">+{formatCurrency(feeInfo.platformFee)}</span>
-            </div>
-            <div className="p-2 bg-[#090e18] rounded-xl border border-[#b58153]/40">
-              <span className="text-[10px] text-[#ffebbf] uppercase font-bold block">Total Payable</span>
-              <span className="font-black text-[#ffebbf] text-sm">{formatCurrency(feeInfo.totalFee)}</span>
-            </div>
+        {/* Fee Notice Box */}
+        <div className="p-4 bg-[#010101] border-2 border-[#b58153]/50 rounded-2xl flex items-center justify-between">
+          <span className="text-xs font-bold text-[#ffebbf] uppercase tracking-wider flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-[#ffebbf]" /> Session Fee Summary
+          </span>
+          <div className="text-right">
+            <span className="text-[10px] text-slate-400 uppercase font-bold block">Total Session Fee</span>
+            <span className="font-black text-[#ffebbf] text-base">{formatCurrency(feeInfo.totalFee)}</span>
           </div>
         </div>
 
@@ -393,7 +377,7 @@ export const BookingCalendarModal: React.FC<BookingCalendarModalProps> = ({
               <span className="capitalize">({deliveryMode})</span>
             </div>
             <div className="text-xs text-slate-300 font-medium">
-              Total Fee: <span className="font-bold text-white">{formatCurrency(feeInfo.totalFee)}</span> <span className="text-[11px] text-slate-400 font-mono">({formatCurrency(feeInfo.baseFee)} + {formatCurrency(feeInfo.platformFee)} platform fee)</span>
+              Total Fee: <span className="font-bold text-white">{formatCurrency(feeInfo.totalFee)}</span>
             </div>
           </div>
 

@@ -324,22 +324,11 @@ export const BookingDetailPage: React.FC = () => {
         <div className="space-y-6">
           <div className="glass-card p-6 border border-[#0a2540] bg-[#090e18] space-y-3 rounded-2xl shadow-xl">
             <h2 className="text-xs font-bold text-[#ffebbf] uppercase tracking-wider border-b border-[#0a2540] pb-2">
-              Fee Summary & Platform Commission
+              Fee Summary
             </h2>
-            <div className="flex justify-between items-center text-xs pt-1">
-              <span className="text-slate-300">Base Speaker Fee</span>
-              <span className="font-bold text-white">{formatCurrency(feeInfo.baseFee)}</span>
-            </div>
-            <div className="flex justify-between items-center text-xs pb-2 border-b border-[#0a2540]">
-              <span className="text-slate-400">+ 10% Platform Fee</span>
-              <span className="font-semibold text-amber-300">+{formatCurrency(feeInfo.platformFee)}</span>
-            </div>
             <div className="flex justify-between items-center text-sm pt-1 font-bold">
-              <span className="text-white">Total Payable Amount</span>
+              <span className="text-white">Total Session Fee</span>
               <span className="text-[#ffebbf] font-black text-lg">{formatCurrency(feeInfo.totalFee)}</span>
-            </div>
-            <div className="p-2.5 bg-[#010101] rounded-xl border border-[#0a2540] text-[10px] text-slate-400 font-mono text-center">
-              Includes 10% platform fee for Lecturely escrow protection & Meet generation.
             </div>
           </div>
         </div>
