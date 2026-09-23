@@ -95,7 +95,12 @@ public class BookingServiceImpl implements BookingService {
             sessionFee = expert.getSessionFee() != null ? expert.getSessionFee() : BigDecimal.ZERO;
         }
 
-        BigDecimal platformFee = sessionFee.multiply(PLATFORM_RATE).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal effectiveRate = calculateEffectivePlatformRate(
+                expert.getId(),
+                req.getDurationMinutes(),
+                req.getStudentMessage()
+        );
+        BigDecimal platformFee = sessionFee.multiply(effectiveRate).setScale(2, RoundingMode.HALF_UP);
         BigDecimal expertEarnings = sessionFee.subtract(platformFee);
 
         String bookingMode = req.getMode() != null && !req.getMode().isBlank() ? req.getMode() : "ONLINE";
@@ -827,5 +832,27 @@ public class BookingServiceImpl implements BookingService {
             }
         }
         return "";
+    }
+
+    private BigDecimal calculateEffectivePlatformRate(Long expertId, Integer durationMinutes, String studentMessage) {
+        BigDecimal rate = PLATFORM_RATE; // default 0.10 (10%)
+
+        // 1. Check if expert has completed 30 or more lectures -> 3% platform fee reduction (0.03)
+        List<Booking> completedLectures = bookingRepository.findByExpertIdAndStatus(expertId, "COMPLETED");
+        if (completedLectures != null && completedLectures.size() >= 30) {
+            rate = rate.subtract(new BigDecimal("0.03"));
+        }
+
+        // 2. Check if trial lecture session -> 2% platform fee reduction (0.02)
+        boolean isTrial = (studentMessage != null && studentMessage.toLowerCase().contains("trial"))
+                || (durationMinutes != null && durationMinutes <= 30);
+        if (isTrial) {
+            rate = rate.subtract(new BigDecimal("0.02"));
+        }
+
+        if (rate.compareTo(BigDecimal.ZERO) < 0) {
+            rate = BigDecimal.ZERO;
+        }
+        return rate;
     }
 }
