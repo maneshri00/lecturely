@@ -110,7 +110,9 @@ html.light .hero-image-container {
 /* Multi-tier depth: convert internal dark boxes into soft light sub-containers */
 /* Exclude image containers and elements with overflow-hidden (likely image wrappers) */
 html.light .bg-\[\#010101\]:not(.hero-image-container),
-html.light .bg-\[\#010101\]\/95 {
+html.light .bg-\[\#010101\]\/95,
+html.light .bg-\[\#010101\]\/90,
+html.light .bg-\[\#010101\]\/80 {
   background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
   color: #0f172a !important;
@@ -118,6 +120,7 @@ html.light .bg-\[\#010101\]\/95 {
 
 html.light .bg-\[\#090e18\]:not(.hero-image-container),
 html.light .bg-\[\#090e18\]\/95,
+html.light .bg-\[\#090e18\]\/90,
 html.light .bg-\[\#090e18\]\/40 {
   background-color: #ffffff !important;
   border-color: #e2e8f0 !important;
@@ -137,6 +140,19 @@ html.light .bg-black\/40 {
   background-color: rgba(241, 245, 249, 0.9) !important;
   color: #0f172a !important;
   border-color: #cbd5e1 !important;
+}
+
+/* Light mode badge color contrast overrides */
+html.light .bg-emerald-950 {
+  background-color: #ecfdf5 !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+
+html.light .bg-amber-950 {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #fde68a !important;
 }
 
 /* Light mode: background texture image — use multiply blend instead of screen */
@@ -201,6 +217,16 @@ html.light div[class*="bg-gradient-to-br"]:not(.auth-panel),
 html.light div[class*="bg-gradient-to-r"]:not(.auth-panel) {
   border-color: #e2e8f0;
   color: #0f172a;
+}
+
+html.light div[class*="from-[#090e18]"]:not(.auth-panel),
+html.light div[class*="from-[#0a2540]"]:not(.auth-panel),
+html.light section[class*="from-[#090e18]"]:not(.auth-panel),
+html.light section[class*="from-[#0a2540]"]:not(.auth-panel) {
+  background-image: none !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 /* Typography & text overrides in Light Mode */
